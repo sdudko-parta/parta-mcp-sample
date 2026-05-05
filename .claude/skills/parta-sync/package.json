@@ -1,0 +1,21 @@
+{
+  "name": "parta-sync-skill",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Helper scripts for the parta-sync Claude skill: parse markdown pages into a Parta Quick-Start block plan, and PUT signed S3 multipart parts.",
+  "scripts": {
+    "parse": "node scripts/parse-page.mjs",
+    "upload": "node scripts/upload-asset.mjs"
+  },
+  "dependencies": {
+    "hast-util-to-html": "^9.0.4",
+    "mdast-util-to-hast": "^13.2.0",
+    "remark-gfm": "^4.0.1",
+    "remark-parse": "^11.0.0",
+    "unified": "^11.0.5"
+  },
+  "engines": {
+    "node": ">=18.17"
+  }
+}

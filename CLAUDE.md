@@ -6,7 +6,7 @@ Context for Claude Code working inside this repo.
 
 A reference layout for Parta course projects mirrored as plain files. Each course is a directory with `project.json` (validated by `schema.json` at the repo root), `pages/*.md`, and `assets/*`. The `parta-sync` skill in `.claude/skills/parta-sync/` pushes the local state into Parta via the Parta MCP.
 
-This is **not** a code project — there is no build, no tests, no runtime. It's content + one skill.
+This is **not** a code project — there is no build, no tests, no runtime. It's content + one skill. The skill itself ships two small Node helpers under `.claude/skills/parta-sync/scripts/`; their deps are declared in `.claude/skills/parta-sync/package.json` and installed with `npm install --prefix .claude/skills/parta-sync` (one-off, Node ≥ 18.17).
 
 ## Conventions when editing courses
 
@@ -37,8 +37,8 @@ This is **not** a code project — there is no build, no tests, no runtime. It's
 
 ## MCP servers used
 
-- **Parta MCP** (`mcp__claude_ai_dev_-_consent_screen_Parta_MCP__*`) for project/section/block CRUD and file uploads. The sync skill is the only thing that should call these directly.
-- **GitHub MCP** (`mcp__claude_ai_GitHUB_MCP__*`) — reserved for the future "mirror to GitHub" flow. Don't push from this repo unless explicitly asked.
+- **Parta MCP** for project/section/block CRUD, template discovery, and S3 file uploads. The sync skill is the only thing that should call these directly. It draws block templates from the **Parta Quick-Start Collection** template group.
+- **GitHub MCP** — reserved for the future "mirror to GitHub" flow. Don't push from this repo unless explicitly asked.
 
 ## When in doubt
 

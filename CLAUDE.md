@@ -6,7 +6,7 @@ Context for Claude Code working inside this repo.
 
 A reference layout for Parta course projects mirrored as plain files. Each course is a directory with `project.json` (validated by `schema.json` at the repo root), `pages/*.md`, and `assets/*`. The `parta-sync` skill in `.claude/skills/parta-sync/` pushes the local state into Parta via the Parta MCP.
 
-This is **not** a code project — there is no build, no tests, no runtime. It's content + one skill. The skill itself ships two small Node helpers under `.claude/skills/parta-sync/scripts/`; their deps are declared in `.claude/skills/parta-sync/package.json` and installed with `npm install --prefix .claude/skills/parta-sync` (one-off, Node ≥ 18.17).
+This is **not** a code project — there is no build, no tests, no runtime. It's content + one skill. The skill is MCP-only: it reads the repo through the GitHub MCP and writes to Parta through the Parta MCP. There is no local clone to maintain.
 
 ## Conventions when editing courses
 

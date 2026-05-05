@@ -27,14 +27,10 @@ The same layout makes it easy to also mirror this repo to GitHub via the GitHub 
 │   └── assets/01-welcome.png … 10-best-practices.png
 └── .claude/
     └── skills/parta-sync/
-        ├── SKILL.md
-        ├── package.json                # node deps for the helpers
-        └── scripts/
-            ├── parse-page.mjs          # markdown → block plan JSON
-            └── upload-asset.mjs        # PUT signed S3 multipart parts
+        └── SKILL.md
 ```
 
-After the first sync, each project also contains a `.sync.json` recording what was last pushed (project id, section ids per page, block uuids per markdown node, file ids per asset, file hashes, last-sync timestamp). It's how the skill computes a delta on subsequent runs.
+After the first sync, each project also contains a `.sync.json` recording what was last pushed (project id, section ids per page, block uuids per markdown node, file ids per asset, git blob shas, last-sync timestamp). It's how the skill computes a delta on subsequent runs. The skill commits `.sync.json` back to `main` itself via the GitHub MCP — you don't write it by hand.
 
 ## Anatomy of a project
 
@@ -49,31 +45,25 @@ Every course directory contains exactly:
 
 The page **order in `project.json` is the source of truth**. Reordering the `pages` array drives `move_editor_section` calls on the next sync.
 
-## First-time setup
-
-The skill ships two Node helpers in `.claude/skills/parta-sync/scripts/`. Install their deps once (Node ≥ 18.17):
-
-```text
-npm install --prefix .claude/skills/parta-sync
-```
-
 ## Using the sync skill
 
-In Claude Code, from this repo:
+The skill talks to GitHub through the GitHub MCP and to Parta through the Parta MCP. There is no local clone to maintain, no Node setup, and no `git pull` step — anywhere with both MCPs connected can run the sync.
 
 ```text
 /parta-sync mcp-server-project
 ```
 
-On first run the skill creates the project in Parta (you'll be asked which company), uploads assets via S3 multipart, and for every page creates one section (a cover for `pages[0]`, a landing for the rest) plus a sequence of blocks drawn from the **Parta Quick-Start Collection** template group — one block per markdown node (heading, paragraph, image, list, code, quote, table, divider, …). It writes the resulting ids back into `mcp-server-project/.sync.json`.
+On first run the skill creates the project in Parta (you'll be asked which company), uploads each referenced asset via `upload_file_from_url` against its raw GitHub URL, and for every page creates one section (a cover for `pages[0]`, a landing for the rest) plus a sequence of blocks drawn from the **Parta Quick-Start Collection** template group — one block per markdown node (heading, paragraph, image, list, code, quote, table, divider, …). It then commits `mcp-server-project/.sync.json` and the ids in `project.json` back to `main` via the GitHub MCP.
 
-On subsequent runs it diffs the working tree against `.sync.json` and only touches what changed:
+On subsequent runs it compares git blob shas against `.sync.json` and only touches what changed:
 
 - new page → `create_editor_section` + a series of `create_editor_block` + `update_editor_block` per the parsed block plan
 - changed page content → `update_editor_block` (and add/remove blocks as the parsed plan dictates)
 - reordered pages → `move_editor_section`
 - removed page → `delete_editor_section`
-- new/changed asset → `create_s3_uploads` → `scripts/upload-asset.mjs` for the multipart PUT → `complete_s3_uploads`, then a block update with the new `fileMetaId`
+- new/changed asset → `upload_file_from_url` against the raw GitHub URL, then a block update with the new `fileMetaId`
+
+Each successful sync produces one or two commits per course: `parta-sync state: <course>` always; `parta-sync init: <course>` only on the very first sync.
 
 See [`.claude/skills/parta-sync/SKILL.md`](.claude/skills/parta-sync/SKILL.md) for the full algorithm, the markdown-node → template mapping, and the MCP calls it makes.
 

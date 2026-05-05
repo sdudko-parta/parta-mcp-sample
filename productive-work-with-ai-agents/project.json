@@ -1,0 +1,59 @@
+{
+  "$schema": "../schema.json",
+  "id": null,
+  "companyId": null,
+  "name": "Productive Work with AI Agents",
+  "description": "A practical course on collaborating with AI coding agents — how to set them up, hand off work, catch their mistakes, and ship faster than you would alone.",
+  "pages": [
+    {
+      "name": "Welcome",
+      "description": "What this course covers and how to get the most out of it.",
+      "ref": "pages/01-welcome.md"
+    },
+    {
+      "name": "What is an AI Agent?",
+      "description": "Definition, what separates an agent from a chatbot, and why the distinction matters.",
+      "ref": "pages/02-what-is-an-agent.md"
+    },
+    {
+      "name": "Goals and Constraints",
+      "description": "How to brief an agent so it makes the trade-offs you would.",
+      "ref": "pages/03-goals-constraints.md"
+    },
+    {
+      "name": "Choose the Right Model",
+      "description": "Picking a model that matches the task — accuracy, speed, cost, context size.",
+      "ref": "pages/04-choose-the-model.md"
+    },
+    {
+      "name": "Tool Use Fundamentals",
+      "description": "Giving the agent hands: tools, schemas, and when to add a new one.",
+      "ref": "pages/05-tool-use.md"
+    },
+    {
+      "name": "Designing Agent Prompts",
+      "description": "Prompt structure that survives long sessions and weird inputs.",
+      "ref": "pages/06-prompt-design.md"
+    },
+    {
+      "name": "Errors and Retries",
+      "description": "Letting the agent recover from a stumble without spiraling.",
+      "ref": "pages/07-errors-retries.md"
+    },
+    {
+      "name": "Memory and Context",
+      "description": "What to keep in the prompt, what to retrieve, and what to write down.",
+      "ref": "pages/08-memory-context.md"
+    },
+    {
+      "name": "Evaluating an Agent",
+      "description": "How to tell if your changes made the agent better or just different.",
+      "ref": "pages/09-evaluation.md"
+    },
+    {
+      "name": "Best Practices",
+      "description": "Habits that compound: small commits, tight loops, honest reviews.",
+      "ref": "pages/10-best-practices.md"
+    }
+  ]
+}

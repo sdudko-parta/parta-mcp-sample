@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://parta.io/schemas/parta-mcp-sample/project.json",
+  "title": "Parta MCP Sample Project",
+  "description": "Local mirror of a Parta course project. Source of truth for sync into Parta via the parta-sync skill.",
+  "type": "object",
+  "required": ["name", "description", "pages"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Pointer to this JSON schema. Optional; helps IDEs validate project.json."
+    },
+    "id": {
+      "type": ["string", "null"],
+      "description": "Parta project id. null until first successful sync — the parta-sync skill writes it back."
+    },
+    "companyId": {
+      "type": ["string", "null"],
+      "description": "Parta company id the project belongs to. Required before the first sync."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Project name (course title)."
+    },
+    "description": {
+      "type": "string",
+      "description": "One-paragraph project description shown on the cover."
+    },
+    "pages": {
+      "type": "array",
+      "description": "Ordered list of pages. Order is preserved on sync — reordering here triggers move_editor_section calls.",
+      "items": { "$ref": "#/$defs/page" }
+    }
+  },
+  "$defs": {
+    "page": {
+      "type": "object",
+      "required": ["name", "ref"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Page title. Used as the section name in Parta."
+        },
+        "description": {
+          "type": "string",
+          "description": "Short summary of the page. Optional; used as the section subtitle when supported."
+        },
+        "ref": {
+          "type": "string",
+          "pattern": "^pages/.+\\.md$",
+          "description": "Path (relative to project.json) to the page's markdown source file."
+        }
+      }
+    }
+  }
+}

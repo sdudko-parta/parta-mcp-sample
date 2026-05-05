@@ -1,0 +1,19 @@
+{
+  "$schema": "../schema.json",
+  "id": null,
+  "companyId": null,
+  "name": "Sample Project",
+  "description": "Minimal template that demonstrates the project.json + pages/ + assets/ layout consumed by the parta-sync skill.",
+  "pages": [
+    {
+      "name": "Welcome",
+      "description": "Cover page introducing the sample project.",
+      "ref": "pages/01-welcome.md"
+    },
+    {
+      "name": "Getting Started",
+      "description": "Walk-through of the layout and how the sync runs.",
+      "ref": "pages/02-getting-started.md"
+    }
+  ]
+}

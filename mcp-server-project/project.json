@@ -1,0 +1,59 @@
+{
+  "$schema": "../schema.json",
+  "id": null,
+  "companyId": null,
+  "name": "Building an MCP Server",
+  "description": "A hands-on course on designing, implementing, and shipping a Model Context Protocol (MCP) server that an AI agent like Claude Code can plug into.",
+  "pages": [
+    {
+      "name": "Welcome",
+      "description": "Course overview, what you'll build, and prerequisites.",
+      "ref": "pages/01-welcome.md"
+    },
+    {
+      "name": "What is the Model Context Protocol?",
+      "description": "MCP in one paragraph, what it solves, and how a server fits in.",
+      "ref": "pages/02-what-is-mcp.md"
+    },
+    {
+      "name": "The Server Lifecycle",
+      "description": "Initialize, list, call — the request shape an MCP client expects.",
+      "ref": "pages/03-server-lifecycle.md"
+    },
+    {
+      "name": "Project Setup",
+      "description": "Create the project, install the SDK, and run a no-op server.",
+      "ref": "pages/04-project-setup.md"
+    },
+    {
+      "name": "Defining Tools",
+      "description": "Tool schemas, input validation, and side-effect safety.",
+      "ref": "pages/05-defining-tools.md"
+    },
+    {
+      "name": "Defining Resources",
+      "description": "Expose read-only data the agent can pull when it needs context.",
+      "ref": "pages/06-defining-resources.md"
+    },
+    {
+      "name": "Prompts and Slash Commands",
+      "description": "Reusable prompt templates the user can invoke from the client.",
+      "ref": "pages/07-prompts.md"
+    },
+    {
+      "name": "Authentication and Security",
+      "description": "Auth patterns, secret handling, and the principle of least privilege.",
+      "ref": "pages/08-auth-security.md"
+    },
+    {
+      "name": "Testing the Server",
+      "description": "Use the MCP Inspector and unit tests to keep behavior honest.",
+      "ref": "pages/09-testing.md"
+    },
+    {
+      "name": "Deploy and Integrate",
+      "description": "Package the server and wire it into Claude Code or another MCP client.",
+      "ref": "pages/10-deploy.md"
+    }
+  ]
+}

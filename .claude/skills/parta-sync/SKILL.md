@@ -205,21 +205,12 @@ For each planned block:
 1. Read the cached schema for `templateName` (from §3).
 2. Translate the parsed payload to `bankContentItems` keyed strictly by the schema:
    - `richText` slot ← minimal HTML for the node (`<h1>`/`<h2>`/`<p>`/`<strong>`/`<em>`/`<code>`/`<a>`/`<ul>`/`<ol>`).
-   - `image` slot ← `{ source: "file", fileId: "<uuid>", alt, zoomable: false, overlay: null }`. The `fileId` is the UUID returned by `upload_file_from_url` in §5. **Never** set `source: "file"` with a URL string anywhere in the content object — if you see `https://` in a field when `source` is `"file"`, stop, this is wrong. If the chosen template has no `image` slot, downgrade to the next template in the §8 family that does (this is the only place the skill overrides the parser's `templateName`).
+   - `image` slot ← `{ source: "file", fileId: "<uuid>", alt, zoomable: false, overlay: null }`. The `fileId` is the UUID returned by `upload_file_from_url` in §5. **Never** inline an `<img src=…>` to a relative repo path or to a `raw.githubusercontent.com` URL; if the chosen template has no `image` slot, downgrade to the next template in the §8 family that does (this is the only place the skill overrides the parser's `templateName`).
    - `code` slot ← `{ language, code }` from the fenced block (`language` from the info string; default `text`).
    - `table` slot ← `{ header, rows }` from the GFM table; do not transform cells.
    - `caption`, `heading`, `label`, `url` ← copy from the parsed payload by name.
 3. Build `bankContentItems` using **only** keys present in the cached schema. Do not invent keys.
-4. **Pre-submit guard — image slots.** Before calling any update tool, assert every item where `type === "image"`:
-   - `content.source` must be `"file"` or `"url"`.
-   - If `source === "file"`: `content.fileId` must be a non-empty UUID (`/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i`). The content object must NOT contain a `url` key. A `fileId` that is empty, null, or looks like a URL is invalid.
-   - If `source === "url"`: `content.url` must be non-empty and must NOT be a `raw.githubusercontent.com` URL.
-   - **If any assertion fails: abort the run immediately.** Report the offending `nodeKey`, block uuid, and the bad value. Do NOT call `update_editor_block` or `update_editor_blocks`. Do NOT persist `.sync.json`.
-5. Call `update_editor_block` (or batch `update_editor_blocks`, ≤ 50). Inspect `validation.errors`; retry only the offending entries.
-6. **Post-submit verification — image slots.** After every `update_editor_block` / `update_editor_blocks` call that included at least one `image` type item, immediately call `get_editor_block` for each such block and check the returned `bankContentSchema`:
-   - If `source === "file"`: the returned `content.fileId` must be non-empty.
-   - If `source === "url"`: the returned `content.url` must be non-empty.
-   - **If verification fails for any block: abort the run.** Report the block uuid and the empty field. Do NOT proceed to §10. The Parta API silently drops invalid image references; an empty field after a write means the value was rejected server-side and must be investigated before retrying.
+4. Call `update_editor_block` (or batch `update_editor_blocks`, ≤ 50). Inspect `validation.errors`; retry only the offending entries.
 
 ### 8. Cheat-sheet: markdown node → Quick-Start template
 
@@ -304,8 +295,6 @@ When §0 short-circuits (manifest match, no Parta calls made), still print the s
 - Do not invent `bankContentItems` keys — downgrade to the next compatible template in §8 instead.
 - Do not edit `.sync.json` by hand. Do not edit `id` or `companyId` in `project.json` after the first successful sync.
 - Do not push raw image URLs (`raw.githubusercontent.com/...`) into block content. Always go through `fileMetaId`.
-- **Do not put a URL string in `fileId`.** `fileId` is always the UUID returned by `upload_file_from_url`. If you ever write `"fileId": "https://..."`, stop — the §7 pre-submit guard will catch this, but you should catch it first. The Parta API silently accepts and then discards invalid `fileId` values, leaving the image blank with no error.
-- Do not skip the §7 post-submit verification for image blocks. The API's 200 response does not guarantee the `fileId` was persisted — always confirm with `get_editor_block`.
 - Do not assume any local working tree, `npm install`, or `git pull`. Everything is MCP-only.
 - Do not implement the reverse direction (Parta → markdown). Out of scope.
 

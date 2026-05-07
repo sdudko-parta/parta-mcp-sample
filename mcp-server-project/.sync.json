@@ -1,5 +1,5 @@
 {
-  "lastSyncedAt": "2026-05-07T00:00:00.000Z",
+  "lastSyncedAt": "2026-05-07T12:21:00.000Z",
   "remote": {
     "companyId": "dcf0a9e3-c4c9-4a2f-883d-75672e6399dc",
     "projectId": "fc85af5e-81f2-4ae0-a7a7-6fcc253d311a"
@@ -183,5 +183,16 @@
       ]
     }
   },
-  "assets": {}
+  "assets": {
+    "assets/01-welcome.png": { "fileMetaId": "eca7257b-4e23-4942-8440-0f37479e79b2", "blobSha": "afc16acf3e5d61e9e7e5bbad07232fdb326cfc0b", "size": 15421 },
+    "assets/02-what-is-mcp.png": { "fileMetaId": "34abbdac-2d5c-4d0d-bc0a-88cb4806739e", "blobSha": "f83ef33785ca75ca7cd63ac31d88b1a055aa3145", "size": 18007 },
+    "assets/03-server-lifecycle.png": { "fileMetaId": "df6bd3b0-c2c9-4004-917f-d8c772c391a3", "blobSha": "3b4d9499be3eac1214f3713ec0a025c895cb4862", "size": 16459 },
+    "assets/04-project-setup.png": { "fileMetaId": "e4dc6d3e-7d3a-4c16-89f7-e4096f1746ff", "blobSha": "282be8315b8595042d905f3d9b7333f9ab2a42dc", "size": 16815 },
+    "assets/05-defining-tools.png": { "fileMetaId": "b0c63cf0-2904-4f3e-bd4d-3e80184f5fb0", "blobSha": "dcb56b1ecb95c2cbed59d572305bb8e6b997b14b", "size": 16088 },
+    "assets/06-defining-resources.png": { "fileMetaId": "098c21ee-c3fa-4b84-8a20-8ac0a781e8be", "blobSha": "95b9bb81ffd94fc28d569cc750f9deefec8cd491", "size": 18203 },
+    "assets/07-prompts.png": { "fileMetaId": "440321f2-1821-497a-bcf2-12b93540a76b", "blobSha": "7cb19ed23548cc22a8ba582f1c4ff71b3ce78d0c", "size": 20525 },
+    "assets/08-auth-security.png": { "fileMetaId": "bd2a16c7-b547-4d94-8e19-4bc308c4bd68", "blobSha": "4e34ddc2d4b0b0f6c84da54d63cc4cdb4994abf2", "size": 19044 },
+    "assets/09-testing.png": { "fileMetaId": "0ab6346a-ecc5-400f-a327-4307798eae61", "blobSha": "19ec364b902204a30c65dc7a0dfc922c671a9d33", "size": 17331 },
+    "assets/10-deploy.png": { "fileMetaId": "d31f069a-5a8b-4c8b-8ed4-75d65c828d41", "blobSha": "f6dc47daa73aae7d46b70b67bfb5eaa0f0398e58", "size": 18912 }
+  }
 }

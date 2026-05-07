@@ -97,16 +97,22 @@
     },
     "pages/06-prompt-design.md": {
       "sectionId": "6d06eeb5-48aa-4458-9c2a-718d8a3d7837",
-      "blobSha": "6cee94d47bd17ab87e4ac81f5340d064e580e68f",
+      "blobSha": "e2e9c7278d5ad487db17b70658896d3ea8a16c4c",
       "blocks": [
         { "uuid": "2ec87fd3-fdc7-498a-b123-c9209ceb2090", "templateName": "Heading 1 with Caption", "nodeKey": "h1#0" },
         { "uuid": "79391444-588d-4754-88d4-a16de3b91a3c", "templateName": "Image with Caption", "nodeKey": "image#0" },
         { "uuid": "2351afe1-71d4-4ce0-a74c-fe1dc9e67d68", "templateName": "Heading 2", "nodeKey": "h2#0" },
         { "uuid": "6f052048-8d0a-4260-919a-96b0009741a8", "templateName": "Numbered List", "nodeKey": "ol#0" },
         { "uuid": "801dc12d-aaa8-41da-beaa-fd746cc3d14f", "templateName": "Heading 2 with Caption", "nodeKey": "h2#1" },
-        { "uuid": "c3673ba1-a5f9-472b-8acd-57c8ba39a681", "templateName": "Bullet List", "nodeKey": "ul#0" },
+        { "uuid": "556a72e9-6c26-4912-bc0f-9807d4915051", "templateName": "Text", "nodeKey": "p#0" },
+        { "uuid": "81e55313-c68f-4ab7-b0ef-4be63e82d986", "templateName": "Code Snippet", "nodeKey": "code#0" },
+        { "uuid": "b3e42c7a-e968-4c85-9c82-e035ac9ee878", "templateName": "Text", "nodeKey": "p#1" },
+        { "uuid": "700144ea-668f-4874-b8e1-4b631c593fd3", "templateName": "Code Snippet", "nodeKey": "code#1" },
+        { "uuid": "cb89f1e8-ac4e-43f0-9379-1922b6c6c75d", "templateName": "Text", "nodeKey": "p#2" },
         { "uuid": "b380582c-2ab0-41ba-abe5-ee5300837f50", "templateName": "Heading 2 with Divider", "nodeKey": "h2#2" },
-        { "uuid": "556a72e9-6c26-4912-bc0f-9807d4915051", "templateName": "Text", "nodeKey": "p#0" }
+        { "uuid": "c3673ba1-a5f9-472b-8acd-57c8ba39a681", "templateName": "Bullet List", "nodeKey": "ul#0" },
+        { "uuid": "03615699-2fff-4a93-948c-3cd2f2bba718", "templateName": "Heading 2", "nodeKey": "h2#3" },
+        { "uuid": "286d7e52-ee22-41b1-be07-437620f694a7", "templateName": "Text", "nodeKey": "p#3" }
       ]
     },
     "pages/07-errors-retries.md": {
@@ -169,7 +175,81 @@
         { "uuid": "4a240c1c-0f80-4968-b299-93ec8aafd735", "templateName": "Text", "nodeKey": "p#0" },
         { "uuid": "d8ddbc25-bbf5-40cb-b5f1-f09d20972ea4", "templateName": "Footer 1", "nodeKey": "footer#0" }
       ]
+    },
+    "pages/11-working-in-a-team.md": {
+      "sectionId": "5677ac92-3ecc-46ac-a179-6403b983e789",
+      "blobSha": "8134c02fbcb9e957059a68131b4e22bcc9d6b24f",
+      "blocks": [
+        { "uuid": "49b875bb-6366-4e4f-8a1d-69165f27bf7c", "templateName": "Heading 1 with Caption", "nodeKey": "h1#0" },
+        { "uuid": "f0bd4256-d744-495f-bffb-cdb3c5b6b373", "templateName": "Heading 2", "nodeKey": "h2#0" },
+        { "uuid": "a36fbced-e7df-4e72-a3e4-5d5bf286b6bc", "templateName": "Text", "nodeKey": "p#0" },
+        { "uuid": "bdd3e052-0f16-4ace-a444-a36080c7fa8a", "templateName": "Text", "nodeKey": "p#1" },
+        { "uuid": "6c18a7a7-6987-4452-96f5-f2a5d5e49cce", "templateName": "Bullet List", "nodeKey": "ul#0" },
+        { "uuid": "16f6cf0a-6ce6-4902-bfe5-0fba6ca25770", "templateName": "Heading 2 with Caption", "nodeKey": "h2#1" },
+        { "uuid": "172c0499-6235-4f9c-b1c3-9ed659ce1837", "templateName": "Text", "nodeKey": "p#2" },
+        { "uuid": "0b545623-168d-45b4-9694-6cd0d9c00137", "templateName": "Bullet List", "nodeKey": "ul#1" },
+        { "uuid": "d7e02b50-5d11-4865-a14f-75fba0cc1736", "templateName": "Heading 2 with Divider", "nodeKey": "h2#2" },
+        { "uuid": "c5f9f21f-d920-4a25-ac78-7d82107d7807", "templateName": "Text", "nodeKey": "p#3" },
+        { "uuid": "955cdd18-841e-444b-ab5c-043f8ea2da78", "templateName": "Bullet List", "nodeKey": "ul#2" },
+        { "uuid": "27b65b01-3e0b-4324-a4d0-86935e49dad3", "templateName": "Heading 2", "nodeKey": "h2#3" },
+        { "uuid": "f8e1fbf8-d378-430b-8f40-062d4609dfba", "templateName": "Text", "nodeKey": "p#4" },
+        { "uuid": "8486e32b-2b55-4e0c-905e-f84550d4a585", "templateName": "Text", "nodeKey": "p#5" },
+        { "uuid": "d1116de3-a255-45dd-ae0e-7a574ce916cf", "templateName": "Heading 2 with Caption", "nodeKey": "h2#4" },
+        { "uuid": "ffa4214a-b05c-4f08-95e7-2c39058d764a", "templateName": "Text", "nodeKey": "p#6" },
+        { "uuid": "02b31b32-c8a1-4f19-93b2-68e53d21c02c", "templateName": "Footer 1", "nodeKey": "footer#0" }
+      ]
     }
   },
-  "assets": {}
+  "assets": {
+    "productive-work-with-ai-agents/assets/01-welcome.png": {
+      "fileMetaId": "976f3a1b-f5c1-4340-b796-2c52023b41e9",
+      "blobSha": "ccc6c7317db01edfed3be6701670d6ea6f4ee64f",
+      "size": 23733
+    },
+    "productive-work-with-ai-agents/assets/02-what-is-an-agent.png": {
+      "fileMetaId": "65730b68-7aea-48f3-a791-e9361144f696",
+      "blobSha": "f27ab8258d7611ad525e7c22706a9d986b60cb1a",
+      "size": 19409
+    },
+    "productive-work-with-ai-agents/assets/03-goals-constraints.png": {
+      "fileMetaId": "830079db-3833-465a-afcf-07caca55acde",
+      "blobSha": "d9a506124db590b825a26a83b005a209abfec77f",
+      "size": 18664
+    },
+    "productive-work-with-ai-agents/assets/04-choose-the-model.png": {
+      "fileMetaId": "c176eb86-d18a-47d9-8205-123552b16788",
+      "blobSha": "f0332e208eb24d5132491d6614516ae5d65d6f61",
+      "size": 19261
+    },
+    "productive-work-with-ai-agents/assets/05-tool-use.png": {
+      "fileMetaId": "b9b19ee3-c436-4fce-82a0-875701e2a3bc",
+      "blobSha": "1ca02e8d9179b4105f5bb7e08f1d91f849dcd282",
+      "size": 17531
+    },
+    "productive-work-with-ai-agents/assets/06-prompt-design.png": {
+      "fileMetaId": "f66a284e-4c78-4e2e-8503-d6c7f974b77a",
+      "blobSha": "422eda5b75b2cc1368765b84a3e09c9f958caa38",
+      "size": 20609
+    },
+    "productive-work-with-ai-agents/assets/07-errors-retries.png": {
+      "fileMetaId": "c907df8d-3f77-41f7-86da-0601adf7c51b",
+      "blobSha": "48f3ab6df908981726453adc8b58f2c5449dd96c",
+      "size": 16941
+    },
+    "productive-work-with-ai-agents/assets/08-memory-context.png": {
+      "fileMetaId": "3e9dc585-f4e2-40f7-9200-381410dcf45e",
+      "blobSha": "b57940ac9dc9a45a73acf413587634585171341b",
+      "size": 19481
+    },
+    "productive-work-with-ai-agents/assets/09-evaluation.png": {
+      "fileMetaId": "eee72fd2-c5f0-4e29-a9f4-f971869b462c",
+      "blobSha": "548c2d8c32e69eafc7387cc53453b729c21933dc",
+      "size": 17316
+    },
+    "productive-work-with-ai-agents/assets/10-best-practices.png": {
+      "fileMetaId": "09f1d820-4aac-45e7-ab4d-1a97f0665cf3",
+      "blobSha": "8036d948d2bd7772a373472c5d1e77d7793fdb05",
+      "size": 17079
+    }
+  }
 }

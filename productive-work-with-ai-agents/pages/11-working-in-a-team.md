@@ -2,6 +2,8 @@
 
 A solo workflow with an agent is one set of habits. A team workflow is a different one. The agent doesn't change — your teammates do.
 
+![Working in a team](../assets/11-working-in-a-team.png)
+
 ## Make the rules legible
 
 Most teams already have norms: how to name branches, when to add tests, what "done" means. If those norms only live in someone's head, every teammate's agent will violate them differently.

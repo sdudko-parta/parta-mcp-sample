@@ -47,6 +47,7 @@ After a successful sync, write `<dir>/.sync.json` to the **course repo** (`sdudk
 ```jsonc
 {
   "lastSyncedAt": "2026-05-05T12:34:56.000Z",
+  "projectJsonBlobSha": "<git blob sha of project.json at last sync>",
   "remote": {
     "companyId": "cmp_…",
     "projectId": "prj_…"
@@ -99,11 +100,33 @@ On the **first** successful sync also write the resolved `id` and `companyId` ba
 
 ## Algorithm
 
+### 0. Manifest short-circuit
+
+The most common case on a cron run is "nothing changed." Fail fast before any parsing, schema validation, or template work.
+
+In a single batch (parallel `get_file_contents` calls):
+
+1. `<dir>/project.json` — capture body and blob `sha`.
+2. `<dir>/pages` — directory listing; capture each page path and blob `sha`.
+3. `<dir>/assets` — directory listing; capture each asset path, blob `sha`, and `size`.
+4. `<dir>/.sync.json` — previous state. 404 → first run; skip the comparison and fall through to §1, reusing the data above.
+
+If `.sync.json` exists, compare four things against the recorded slice:
+
+- `projectJsonBlobSha` matches the current `project.json` blob `sha`.
+- The ordered list of `pages[*].ref` in the current `project.json` matches the keys in `.sync.json.pages` in the same order.
+- For every page, the current blob `sha` matches `.sync.json.pages[ref].blobSha`.
+- The set of asset paths is identical, and every asset's blob `sha` matches `.sync.json.assets[path].blobSha`.
+
+All four match → exit with "no changes": print the summary using the recorded `projectId` and zero counts. Do **not** call any Parta MCP. Do **not** rewrite `.sync.json`.
+
+Any mismatch → fall through to §1, **reusing the data already fetched** (don't re-fetch `project.json`, the page listing, the assets listing, or `.sync.json`).
+
 ### 1. Validate
 
 1. `get_file_contents(repo=parta-mcp-sample, path=schema.json)` → parse the JSON Schema once.
-2. `get_file_contents(repo=parta-mcp-sample, path=<dir>/project.json)` → validate against the schema (especially `pages[*].ref` matches `^pages/.+\.md$`).
-3. For each `pages[*].ref`, attempt `get_file_contents(repo=parta-mcp-sample, path=<dir>/<ref>)`. A 404 on any of them aborts the run with a message naming the missing page.
+2. Validate `project.json` (already fetched in §0) against the schema, especially `pages[*].ref` matches `^pages/.+\.md$`.
+3. Fetch every `<dir>/<ref>` from `pages[*].ref` **in parallel** via `get_file_contents`. A 404 on any of them aborts the run with a message naming the missing page. Capture each file's blob `sha`.
 
 ### 2. Resolve company and project
 
@@ -139,15 +162,20 @@ After all pages have been parsed, the `<dir>/assets` directory listing fetched i
 
 ### 5. Sync assets first
 
-A page block can only embed an uploaded file by `fileMetaId`. Upload before block content writes.
+A page block can only embed an uploaded file by `fileMetaId`. The asset stream and the page stream are independent: assets are reconciled first, then pages pull the current `path → fileMetaId` map at write time. This is what lets a pure asset swap (image bytes change, markdown unchanged) still propagate into Parta.
+
+Asset uploads are independent — issue `upload_file_from_url` calls **in parallel** across paths. The only ordering constraint is that all of §5 must finish before §7 starts writing block content.
 
 For each asset referenced by at least one page:
 
 1. If `.sync.json.assets[path]` exists and the recorded `blobSha` matches the current one from the directory listing, reuse `fileMetaId`. Skip upload.
 2. Otherwise call `upload_file_from_url` with `https://raw.githubusercontent.com/sdudko-parta/parta-mcp-sample/main/<path>`. Capture the returned `fileMetaId`.
-3. Record `fileMetaId`, `blobSha`, `size` in the in-memory `.sync.json.assets[path]`.
+3. If the path previously had a different `fileMetaId`, buffer the old id in `replacedFileMetaIds[]`. It will be deleted at the end of §10, after every block referencing it has been rebound to the new id.
+4. Record the new `fileMetaId`, `blobSha`, `size` in the in-memory `.sync.json.assets[path]`.
 
-Server-side assets that are no longer referenced are NOT auto-deleted. Print them at the end of the run; the user decides.
+Build `changedAssetPaths` — the set of asset paths whose `fileMetaId` is new in this run (uploads in step 2, including first uploads and replacements). §6 uses it to mark pages that need their blocks rebound even when the page's own markdown blob hasn't changed.
+
+Assets that are orphaned because the **path was removed from the repo** are NOT auto-deleted. Print them at the end of the run; the user decides. (Replacements at the same path are auto-cleaned via `replacedFileMetaIds` — different case, safe to delete because §7 has already rebound the references.)
 
 ### 6. Section-level diff
 
@@ -161,11 +189,14 @@ Build two ordered lists:
 | `ref` in desired, not in current                                | `create_editor_section` (type=`cover` for `pages[0]`, otherwise `landing`; position=desired index) → series of `create_editor_block` per the parsed plan → series of `update_editor_block` to fill content.                              |
 | `ref` in current, not in desired                                | `delete_editor_section` for the recorded `sectionId`.                                                                                                                                                                                   |
 | `ref` in both, page `blobSha` changed                           | Re-parse the new markdown. Diff the new plan against recorded `blocks[]` by `nodeKey` and `templateName`. Apply the delta: add missing blocks, delete extra ones, update content via `update_editor_block` (batch as `update_editor_blocks` where possible), `move_editor_block` if order changed. |
+| `ref` in both, page references at least one path in `changedAssetPaths` (markdown otherwise unchanged) | Re-emit content for blocks whose payload references an affected asset (image / video / audio / downloader slots). Use the latest `fileMetaId` from §5's map. No re-parse needed beyond locating those blocks via recorded `nodeKey`s. |
 | `ref` in both, position differs                                 | `move_editor_section` to the new index.                                                                                                                                                                                                 |
-| `ref` in both, no content change, no position change            | Skip.                                                                                                                                                                                                                                   |
+| `ref` in both, no markdown change, no asset rebind, no position change | Skip.                                                                                                                                                                                                                            |
 | `name` in `project.json` differs from the recorded section name | `update_editor_section` with the new name.                                                                                                                                                                                              |
 
 Apply order: deletes → creates (in target order) → moves → content updates. This avoids index churn.
+
+**Parallelism.** Operations on **different `sectionId`s are independent** — fan them out: parallel `delete_editor_section`, parallel `create_editor_section` (after the deletes resolve, since target indices are computed against the deleted-removed list), parallel `move_editor_section`, parallel content fills across sections. **Within a single section**, keep block-level operations strictly sequential (`create_editor_block`, `update_editor_block`/`update_editor_blocks`, `move_editor_block`, `delete_editor_block`): Parta treats the section as a transactional unit, and concurrent block writes against the same `sectionId` will reject or interleave incorrectly. Batched `update_editor_blocks` (≤ 50) is one MCP call covering many blocks of one section — that's still one transaction and is the preferred form.
 
 ### 7. Block-level fill: parsed payload → `bankContentItems`
 
@@ -218,14 +249,17 @@ For each planned block:
 - If `project.json#/name` changed, call `update_editor_project`.
 - If `project.json#/description` changed and the course has a Cover block, update the Cover block's description field — there is no separate project-level description endpoint.
 
-### 10. Persist `.sync.json` and project ids
+### 10. Persist `.sync.json`, project ids, and clean up replaced assets
 
-Only on full success.
+Only on full success — i.e., §7 finished without leaving any block pointing at a stale `fileMetaId`.
 
-1. If this was a first sync (`project.json#/id` was null), write the resolved `id` and `companyId` back into `<dir>/project.json` via `create_or_update_file`. Pass the `sha` captured in §1. Commit message: `parta-sync init: <dir>`.
-2. Build the new `<dir>/.sync.json` payload and write it to the **course repo** (`sdudko-parta/parta-mcp-sample`) via `create_or_update_file`. If the file already existed, pass its `sha` (captured when reading in §1); otherwise omit. Commit message: `parta-sync state: <dir>`.
+1. For each id in `replacedFileMetaIds` (collected in §5), call `delete_file(fileMetaId=<old>)` **in parallel**. A failure here is logged but does not abort the run — by this point all blocks already point at the new asset, so the orphan is harmless. **Order matters:** never delete before §7 completes; otherwise a transient block would reference a missing file.
+2. Build the new `<dir>/.sync.json` payload (must include the top-level `projectJsonBlobSha` — recompute it from the body that will actually be written in step 3 if this is a first sync, otherwise reuse the blob `sha` captured in §0).
+3. Commit:
+   - **First sync** (`project.json#/id` was null on entry): bundle `<dir>/project.json` (with resolved `id` and `companyId`) and `<dir>/.sync.json` into a **single commit** via the GitHub MCP's multi-file commit (`push_files` or equivalent). Commit message: `parta-sync init: <dir>`. After the commit, refresh the `.sync.json.projectJsonBlobSha` field if `push_files` returned new blob shas; if the GitHub MCP exposes them only via a follow-up `get_file_contents`, do that and patch the field with one extra `create_or_update_file` (cost: one extra commit on first-sync only — acceptable since first syncs are rare). If `push_files` is unavailable in the GitHub MCP, fall back to two `create_or_update_file` calls in order — `project.json` first, then `.sync.json` (whose `projectJsonBlobSha` references the just-committed body).
+   - **Subsequent sync**: write only `<dir>/.sync.json` via `create_or_update_file` (pass its `sha` captured in §0). Commit message: `parta-sync state: <dir>`.
 
-On a multi-course run, expect one or two commits per course.
+On a multi-course run, expect one commit per course on the steady state. First syncs add at most one extra commit per course if the multi-file commit path isn't available.
 
 ## Error handling
 
@@ -247,12 +281,14 @@ Sync productive-work-with-ai-agents → Parta
   ↕  2 pages reordered
   -  0 pages deleted
   +  4 assets uploaded
-  ~  1 asset re-uploaded
+  ~  1 asset re-uploaded (1 old fileMetaId deleted, 3 blocks rebound)
   unreferenced server assets: 2 (fm_…, fm_…)
   state commit: <sha>
 ```
 
 Always include the project URL via `get_project_link`.
+
+When §0 short-circuits (manifest match, no Parta calls made), still print the same block — just with all counters at zero and a `manifest match — no Parta calls` line in place of `state commit`. This keeps cron logs readable without misleading anyone into thinking the run was skipped entirely.
 
 ## What NOT to do
 

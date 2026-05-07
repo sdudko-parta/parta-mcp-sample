@@ -5,7 +5,7 @@ description: Sync the Parta course projects in the sdudko-parta/parta-mcp-sample
 
 # parta-sync
 
-GitHub is the source of truth; Parta is the destination. Both are reached only through MCPs — there is no working tree to walk. **Markdown content is not rewritten.** The skill parses each page in-context, places each AST node into the most appropriate template from the **Parta Quick-Start Collection** group (the exact name returned by `list_editor_template_groups`), and persists what was synced as a per-course `.sync.json` committed back to `main`.
+GitHub is the source of truth; Parta is the destination. Both are reached only through MCPs — there is no working tree to walk. **Markdown content is not rewritten.** The skill parses each page in-context, places each AST node into the most appropriate template from the **Parta Quick-Start Collection** group (the exact name returned by `list_editor_template_groups`), and persists what was synced as a per-course `.sync.json` committed to the **state repository** (`parta-mcp-sample-state`).
 
 ## Repository
 
@@ -15,6 +15,14 @@ GitHub is the source of truth; Parta is the destination. Both are reached only t
 - Public — raw URLs (`https://raw.githubusercontent.com/sdudko-parta/parta-mcp-sample/main/<path>`) work without auth.
 
 If the user invokes the skill against a different repo, ask once at the start of the run and use the answer for every GitHub MCP call below.
+
+## State Repository
+
+- Owner: `sdudko-parta`
+- Repo: `parta-mcp-sample-state`
+- Branch: `main`
+- Stores `.sync.json` per course. Path mirrors the course structure: `<dir>/.sync.json` (e.g. `mcp-server-project/.sync.json`).
+- Separate from the course content repo — course content history stays clean.
 
 ## Invocation
 
@@ -32,17 +40,17 @@ For scheduled runs the same command is used. The scheduler does not need a worki
 
 | Path                  | How to read                                                          | Role                                                                                                                                  |
 |-----------------------|----------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
-| `schema.json`         | `get_file_contents(path=schema.json)`                                | JSON Schema for `project.json`. Validate `project.json` locally before any Parta call.                                                |
-| `<dir>/project.json`  | `get_file_contents(path=<dir>/project.json)`                         | Course shell. Capture the file's git blob `sha` from the response — needed when writing back at §10.                                  |
-| `<dir>/pages/<file>.md` | `get_file_contents(path=<dir>/pages/<file>.md)`                    | One markdown file per page; referenced from `project.json#/pages[*].ref`. Capture each file's blob `sha`.                             |
-| `<dir>/assets`        | `get_file_contents(path=<dir>/assets)` (returns directory listing)   | Each entry has the asset's git blob `sha` and `size`. This is the asset inventory.                                                    |
-| `<dir>/.sync.json`    | `get_file_contents(path=<dir>/.sync.json)`                           | (Optional) state from the previous successful sync. Drives the delta. A 404 means first run — do not treat as an error.               |
+| `schema.json`         | `get_file_contents(owner=sdudko-parta, repo=parta-mcp-sample, path=schema.json)` | JSON Schema for `project.json`. Validate `project.json` locally before any Parta call.                                  |
+| `<dir>/project.json`  | `get_file_contents(owner=sdudko-parta, repo=parta-mcp-sample, path=<dir>/project.json)` | Course shell. Capture the file's git blob `sha` from the response — needed when writing back at §10.          |
+| `<dir>/pages/<file>.md` | `get_file_contents(owner=sdudko-parta, repo=parta-mcp-sample, path=<dir>/pages/<file>.md)` | One markdown file per page; referenced from `project.json#/pages[*].ref`. Capture each file's blob `sha`.  |
+| `<dir>/assets`        | `get_file_contents(owner=sdudko-parta, repo=parta-mcp-sample, path=<dir>/assets)` (returns directory listing) | Each entry has the asset's git blob `sha` and `size`. This is the asset inventory.              |
+| `<dir>/.sync.json`    | `get_file_contents(owner=sdudko-parta, repo=parta-mcp-sample-state, path=<dir>/.sync.json)` | (Optional) state from the previous successful sync. Drives the delta. A 404 means first run — do not treat as an error. |
 
 The git blob `sha` returned by GitHub for each file is content-addressed and stable — use it directly as the change-detection key. Don't compute sha256 yourself; you have no local file to hash.
 
 ## State persisted (written via GitHub MCP)
 
-After a successful sync, write `<dir>/.sync.json` with `create_or_update_file`. Commit message: `parta-sync state: <dir>`.
+After a successful sync, write `<dir>/.sync.json` to the **state repository** (`sdudko-parta/parta-mcp-sample-state`) via `create_or_update_file`. Commit message: `parta-sync state: <dir>`.
 
 ```jsonc
 {
@@ -95,19 +103,19 @@ After a successful sync, write `<dir>/.sync.json` with `create_or_update_file`. 
 }
 ```
 
-On the **first** successful sync also write the resolved `id` and `companyId` back into `<dir>/project.json` via a separate `create_or_update_file`. Commit message: `parta-sync init: <dir>`. Subsequent syncs do not touch `project.json`.
+On the **first** successful sync also write the resolved `id` and `companyId` back into `<dir>/project.json` in the **course repo** (`sdudko-parta/parta-mcp-sample`) via a separate `create_or_update_file`. Commit message: `parta-sync init: <dir>`. Subsequent syncs do not touch `project.json`.
 
 ## Algorithm
 
 ### 1. Validate
 
-1. `get_file_contents(path=schema.json)` → parse the JSON Schema once.
-2. `get_file_contents(path=<dir>/project.json)` → validate against the schema (especially `pages[*].ref` matches `^pages/.+\.md$`).
-3. For each `pages[*].ref`, attempt `get_file_contents(path=<dir>/<ref>)`. A 404 on any of them aborts the run with a message naming the missing page.
+1. `get_file_contents(repo=parta-mcp-sample, path=schema.json)` → parse the JSON Schema once.
+2. `get_file_contents(repo=parta-mcp-sample, path=<dir>/project.json)` → validate against the schema (especially `pages[*].ref` matches `^pages/.+\.md$`).
+3. For each `pages[*].ref`, attempt `get_file_contents(repo=parta-mcp-sample, path=<dir>/<ref>)`. A 404 on any of them aborts the run with a message naming the missing page.
 
 ### 2. Resolve company and project
 
-- If `<dir>/.sync.json` exists and records `remote.projectId`, verify the project still exists with `list_editor_projects`. If gone, treat as a fresh sync (drop the in-memory state; do not delete `.sync.json` from the repo yet).
+- If `<dir>/.sync.json` exists in the **state repo** and records `remote.projectId`, verify the project still exists with `list_editor_projects`. If gone, treat as a fresh sync (drop the in-memory state; do not delete `.sync.json` from the state repo yet).
 - Else if `project.json#/id` is set, treat that as the project id and verify the same way.
 - Else (no recorded id):
   - If `project.json#/companyId === null`, call `list_companies` and ask the user to pick one.
@@ -222,10 +230,10 @@ For each planned block:
 
 Only on full success.
 
-1. If this was a first sync (`project.json#/id` was null), write the resolved `id` and `companyId` back into `<dir>/project.json` via `create_or_update_file`. Pass the `sha` captured in §1. Commit message: `parta-sync init: <dir>`.
-2. Build the new `<dir>/.sync.json` payload and write it via `create_or_update_file`. If the file already existed, pass its `sha` from §1; otherwise omit. Commit message: `parta-sync state: <dir>`.
+1. If this was a first sync (`project.json#/id` was null), write the resolved `id` and `companyId` back into `<dir>/project.json` in the **course repo** (`sdudko-parta/parta-mcp-sample`) via `create_or_update_file`. Pass the `sha` captured in §1. Commit message: `parta-sync init: <dir>`.
+2. Build the new `<dir>/.sync.json` payload and write it to the **state repository** (`sdudko-parta/parta-mcp-sample-state`) via `create_or_update_file`. If the file already existed in the state repo, pass its `sha` (captured when reading in §1); otherwise omit. Commit message: `parta-sync state: <dir>`.
 
-These two commits are intentional and per-course. On a multi-course run, expect one or two commits per course.
+These two commits go to two different repositories. On a multi-course run, expect one or two commits per course per repo.
 
 ## Error handling
 
@@ -233,7 +241,7 @@ These two commits are intentional and per-course. On a multi-course run, expect 
 - Asset upload fails (`upload_file_from_url` non-2xx) → stop, name the asset, exit.
 - `bankContentItems` validation fails on one item → log the offending key, skip that block, continue the batch. Re-running after a fix is safe.
 - The user interrupts mid-run → operations applied to Parta so far are durable; `.sync.json` was not committed, so the next run resumes from a consistent state.
-- A `create_or_update_file` 409 on `.sync.json` (someone else committed in between) → re-fetch the file's `sha`, rebuild the payload from current Parta state, retry once. If it still 409s, report and stop.
+- A `create_or_update_file` 409 on `.sync.json` in the state repo (someone else committed in between) → re-fetch the file's `sha` from the state repo, rebuild the payload from current Parta state, retry once. If it still 409s, report and stop.
 
 ## Output
 
@@ -249,7 +257,7 @@ Sync productive-work-with-ai-agents → Parta
   +  4 assets uploaded
   ~  1 asset re-uploaded
   unreferenced server assets: 2 (fm_…, fm_…)
-  state commit: <sha>
+  state commit: <sha> (parta-mcp-sample-state)
 ```
 
 Always include the project URL via `get_project_link`.
@@ -260,6 +268,7 @@ Always include the project URL via `get_project_link`.
 - Do not edit `.sync.json` by hand. Do not edit `id` or `companyId` in `project.json` after the first successful sync.
 - Do not push raw image URLs (`raw.githubusercontent.com/...`) into block content. Always go through `fileMetaId`.
 - Do not assume any local working tree, `npm install`, or `git pull`. Everything is MCP-only.
+- Do not write `.sync.json` to the course content repo (`parta-mcp-sample`) — it belongs in the state repo (`parta-mcp-sample-state`).
 - Do not implement the reverse direction (Parta → markdown). Out of scope.
 
 ## Future hooks (not for v1)

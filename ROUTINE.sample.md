@@ -14,7 +14,7 @@ This task is MCP-only. Do NOT cd to any directory, do NOT run `git pull`, do NOT
 
      - `sample-project-1`
 
-   run `/parta-sync <dir>`. The skill reads `<dir>/project.json`, all `<dir>/pages/*.md`, the `<dir>/assets` listing, and `<dir>/.sync.json` via `get_file_contents`. It uploads referenced assets via `upload_file_from_url` against `https://raw.githubusercontent.com/sdudko-parta/parta-mcp-sample/main/<path>`, creates/updates sections and blocks in Parta from the **Parta Quick-Start Collection** template group, and commits the new `<dir>/.sync.json` (and `<dir>/project.json` on first sync) back to `main` via `create_or_update_file`.
+   run `/parta-sync <dir>`. The skill reads `<dir>/project.json`, all `<dir>/pages/*.md`, the `<dir>/assets` listing, and `<dir>/.sync.json` via `get_file_contents`. It uploads referenced assets via `upload_file_from_url` against `https://raw.githubusercontent.com/sdudko-parta/parta-mcp-sample/main/<path>`, creates/updates sections and blocks in Parta from the **Parta Quick-Start Collection** template group, and commits the new `<dir>/.sync.json` back to `main` via `create_or_update_file`.
 
 3. The skill short-circuits at its §0 manifest check if the per-course `.sync.json` shows no delta — it prints a zero-counter summary with a `manifest match — no Parta calls` marker, makes no Parta calls, and produces no commits. That is the expected outcome on most days. Don't treat "no changes" as an error.
 
@@ -35,7 +35,5 @@ Post one line per project:
 - Don't push raw image URLs (`raw.githubusercontent.com/...`) into block content. Always go through `fileMetaId` returned by `upload_file_from_url`.
 
 - Don't edit `.sync.json` directly outside the skill's own write — the skill manages it.
-
-- Don't edit `id` or `companyId` in `project.json` after the first successful sync.
 
 - If the `parta-sync` skill is missing on `main`, abort with a clear message naming the missing file. Do not attempt to recreate it.

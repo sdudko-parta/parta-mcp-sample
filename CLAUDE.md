@@ -19,7 +19,7 @@ This is **not** a code project — there is no build, no tests, no runtime. It's
 ## Adding a new course
 
 1. `cp -r sample-project-1 my-new-course`
-2. Edit `my-new-course/project.json` — set `companyId`, `name`, `description`, replace the `pages` array.
+2. Edit `my-new-course/project.json` — set `name`, `description`, replace the `pages` array.
 3. Add page markdown under `pages/` matching the `ref` paths.
 4. Drop assets into `assets/`.
 5. Run `/parta-sync my-new-course`.
@@ -32,8 +32,7 @@ This is **not** a code project — there is no build, no tests, no runtime. It's
 
 ## Things not to touch by hand
 
-- `.sync.json` in any course directory — written by the sync skill; editing it can desync the project.
-- The `id` and `companyId` fields of `project.json` once the project has synced — overriding them will create a duplicate Parta project.
+- `.sync.json` in any course directory — written by the sync skill; editing it can desync the project. In particular, the `remote.projectId` and `remote.companyId` it records are the binding to the Parta project; overwriting them will create a duplicate.
 
 ## MCP servers used
 

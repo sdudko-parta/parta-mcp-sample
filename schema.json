@@ -11,14 +11,6 @@
       "type": "string",
       "description": "Pointer to this JSON schema. Optional; helps IDEs validate project.json."
     },
-    "id": {
-      "type": ["string", "null"],
-      "description": "Parta project id. null until first successful sync — the parta-sync skill writes it back."
-    },
-    "companyId": {
-      "type": ["string", "null"],
-      "description": "Parta company id the project belongs to. Required before the first sync."
-    },
     "name": {
       "type": "string",
       "minLength": 1,

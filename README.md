@@ -36,12 +36,12 @@ After the first sync, each project also contains a `.sync.json` recording what w
 
 Every course directory contains exactly:
 
-| File / dir     | Purpose                                                                                         |
-|----------------|-------------------------------------------------------------------------------------------------|
-| `project.json` | The course shell — id, companyId, name, description, ordered pages. Validated by `schema.json`. |
-| `pages/*.md`   | One markdown file per page, referenced from `project.json#/pages[*].ref`.                       |
-| `assets/*`     | Images, videos, etc. Referenced from pages by relative path (`![alt](../assets/foo.png)`).      |
-| `.sync.json`   | Sync state. Written by `parta-sync`. Safe to delete to force a full re-sync.                    |
+| File / dir     | Purpose                                                                                                                                                                 |
+|----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `project.json` | The course shell — name, description, ordered pages. Validated by `schema.json`. The Parta project id and company id are recorded in `.sync.json` after the first sync. |
+| `pages/*.md`   | One markdown file per page, referenced from `project.json#/pages[*].ref`.                                                                                               |
+| `assets/*`     | Images, videos, etc. Referenced from pages by relative path (`![alt](../assets/foo.png)`).                                                                              |
+| `.sync.json`   | Sync state. Written by `parta-sync`. Safe to delete to force a full re-sync.                                                                                            |
 
 The page **order in `project.json` is the source of truth**. Reordering the `pages` array drives `move_editor_section` calls on the next sync.
 
@@ -53,7 +53,7 @@ The skill talks to GitHub through the GitHub MCP and to Parta through the Parta 
 /parta-sync mcp-server-project
 ```
 
-On first run the skill creates the project in Parta (you'll be asked which company), uploads each referenced asset via `upload_file_from_url` against its raw GitHub URL, and for every page creates one section (a cover for `pages[0]`, a landing for the rest) plus a sequence of blocks drawn from the **Parta Quick-Start Collection** template group — one block per markdown node (heading, paragraph, image, list, code, quote, table, divider, …). It then commits `mcp-server-project/.sync.json` and the ids in `project.json` back to `main` via the GitHub MCP.
+On first run the skill creates the project in Parta (you'll be asked which company), uploads each referenced asset via `upload_file_from_url` against its raw GitHub URL, and for every page creates one section (a cover for `pages[0]`, a landing for the rest) plus a sequence of blocks drawn from the **Parta Quick-Start Collection** template group — one block per markdown node (heading, paragraph, image, list, code, quote, table, divider, …). It then commits `mcp-server-project/.sync.json` (which records the new Parta project id and company id) back to `main` via the GitHub MCP.
 
 On subsequent runs it compares git blob shas against `.sync.json` and only touches what changed:
 
@@ -63,7 +63,7 @@ On subsequent runs it compares git blob shas against `.sync.json` and only touch
 - removed page → `delete_editor_section`
 - new/changed asset → `upload_file_from_url` against the raw GitHub URL, then a block update with the new `fileMetaId`
 
-Each successful sync produces one or two commits per course: `parta-sync state: <course>` always; `parta-sync init: <course>` only on the very first sync.
+Each successful sync produces one commit per course: `parta-sync state: <course>` (writing `.sync.json`).
 
 See [`.claude/skills/parta-sync/SKILL.md`](.claude/skills/parta-sync/SKILL.md) for the full algorithm, the markdown-node → template mapping, and the MCP calls it makes.
 

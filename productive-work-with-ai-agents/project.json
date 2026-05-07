@@ -11,14 +11,14 @@
       "ref": "pages/01-welcome.md"
     },
     {
-      "name": "What is an AI Agent?",
-      "description": "Definition, what separates an agent from a chatbot, and why the distinction matters.",
-      "ref": "pages/02-what-is-an-agent.md"
-    },
-    {
       "name": "Goals and Constraints",
       "description": "How to brief an agent so it makes the trade-offs you would.",
       "ref": "pages/03-goals-constraints.md"
+    },
+    {
+      "name": "What is an AI Agent?",
+      "description": "Definition, what separates an agent from a chatbot, and why the distinction matters.",
+      "ref": "pages/02-what-is-an-agent.md"
     },
     {
       "name": "Choose the Right Model",
@@ -54,6 +54,11 @@
       "name": "Best Practices",
       "description": "Habits that compound: small commits, tight loops, honest reviews.",
       "ref": "pages/10-best-practices.md"
+    },
+    {
+      "name": "Working in a Team",
+      "description": "Using agents on a team — shared rules, review handoffs, and keeping context visible to others.",
+      "ref": "pages/11-working-in-a-team.md"
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
   "$schema": "../schema.json",
-  "id": null,
-  "companyId": null,
+  "id": "fc85af5e-81f2-4ae0-a7a7-6fcc253d311a",
+  "companyId": "dcf0a9e3-c4c9-4a2f-883d-75672e6399dc",
   "name": "Building an MCP Server",
   "description": "A hands-on course on designing, implementing, and shipping a Model Context Protocol (MCP) server that an AI agent like Claude Code can plug into.",
   "pages": [

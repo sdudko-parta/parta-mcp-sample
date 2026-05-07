@@ -32,13 +32,13 @@ This is **not** a code project — there is no build, no tests, no runtime. It's
 
 ## Things not to touch by hand
 
-- `.sync.json` in any course — written by the sync skill; editing it can desync the project.
+- `.sync.json` per course — stored in `sdudko-parta/parta-mcp-sample-state`, written by the sync skill. Editing it directly can desync the project.
 - The `id` and `companyId` fields of `project.json` once the project has synced — overriding them will create a duplicate Parta project.
 
 ## MCP servers used
 
 - **Parta MCP** for project/section/block CRUD, template discovery, and S3 file uploads. The sync skill is the only thing that should call these directly. It draws block templates from the **Parta Quick-Start Collection** template group.
-- **GitHub MCP** — reserved for the future "mirror to GitHub" flow. Don't push from this repo unless explicitly asked.
+- **GitHub MCP** — reads course content from this repo (`sdudko-parta/parta-mcp-sample`) and reads/writes sync state to the state repo (`sdudko-parta/parta-mcp-sample-state`).
 
 ## When in doubt
 

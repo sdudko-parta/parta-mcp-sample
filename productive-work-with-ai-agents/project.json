@@ -1,7 +1,7 @@
 {
   "$schema": "../schema.json",
-  "id": null,
-  "companyId": null,
+  "id": "7ab44ebc-8bdd-4a7a-8355-5baa5d46963c",
+  "companyId": "dcf0a9e3-c4c9-4a2f-883d-75672e6399dc",
   "name": "Productive Work with AI Agents",
   "description": "A practical course on collaborating with AI coding agents — how to set them up, hand off work, catch their mistakes, and ship faster than you would alone.",
   "pages": [

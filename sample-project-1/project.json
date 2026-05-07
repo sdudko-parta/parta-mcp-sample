@@ -1,7 +1,7 @@
 {
   "$schema": "../schema.json",
-  "id": null,
-  "companyId": null,
+  "id": "442e135f-9c0e-473f-a834-efde2b07b288",
+  "companyId": "dcf0a9e3-c4c9-4a2f-883d-75672e6399dc",
   "name": "Sample Project",
   "description": "Minimal template that demonstrates the project.json + pages/ + assets/ layout consumed by the parta-sync skill.",
   "pages": [

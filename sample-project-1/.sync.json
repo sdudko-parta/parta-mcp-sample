@@ -1,0 +1,50 @@
+{
+  "lastSyncedAt": "2026-05-07T00:00:00.000Z",
+  "remote": {
+    "companyId": "dcf0a9e3-c4c9-4a2f-883d-75672e6399dc",
+    "projectId": "442e135f-9c0e-473f-a834-efde2b07b288"
+  },
+  "templateGroup": {
+    "id": "ec21030f-4eb4-4e56-bc3a-937a2868160f",
+    "name": "Parta Quick-Start Collection"
+  },
+  "templates": {
+    "Heading 1 with Caption": "8ece313d-d741-47e4-bffa-7fc55365c37c",
+    "Heading 2": "c8523c64-c8e7-42ac-870d-6b5dca00e2c0",
+    "Heading 2 with Caption": "20353f43-16cd-4db7-8d2a-bc02b34600fc",
+    "Heading 2 with Divider": "9eef90e4-5b0a-4a2d-b995-274fd318b77c",
+    "Text": "d304369a-275f-4a9f-b00f-ccfacb9508dc",
+    "Bullet List": "db806711-d8c5-4dd5-a236-ad656ef7f8c9",
+    "Numbered List": "12a70e63-6697-40b0-be1c-50ebbad593e2",
+    "Code Snippet": "6a27074d-53e6-4e8b-bced-ebd521671e61",
+    "Image with Caption": "9528f5b0-ed33-4aaf-8a37-bcbc303d0068",
+    "Footer 1": "be7a1cd3-faa8-4e3b-893d-bfac954795db"
+  },
+  "pages": {
+    "pages/01-welcome.md": {
+      "sectionId": "727635fa-be00-408c-9f80-401f94cdd12b",
+      "blobSha": "e6f7a4cc5f8489aa023b8e7ce5c6a80981378180",
+      "blocks": [
+        { "uuid": "d50dbefe-0a08-4672-b43a-9ebc334d8cd9", "templateName": "Heading 1 with Caption", "nodeKey": "h1#0" },
+        { "uuid": "169b2ad6-d26b-4d43-a4df-7627d56c67f0", "templateName": "Image with Caption", "nodeKey": "image#0" },
+        { "uuid": "3857f86a-c605-4a2b-a7c0-d10223e2b81d", "templateName": "Heading 2", "nodeKey": "h2#0" },
+        { "uuid": "b4626a9a-218e-40bd-b1a2-84c7a43b2007", "templateName": "Bullet List", "nodeKey": "ul#0" },
+        { "uuid": "3995ba80-695b-41bd-8ea7-3a893d42ac5d", "templateName": "Text", "nodeKey": "p#0" }
+      ]
+    },
+    "pages/02-getting-started.md": {
+      "sectionId": "b05bc7d7-9626-4447-b2c5-4041ffba890c",
+      "blobSha": "d72079d58d701c56e93a4fcdec2633c6a68c2682",
+      "blocks": [
+        { "uuid": "a2f8eb2f-55c3-4e5f-9c80-934df00b7ee9", "templateName": "Heading 1 with Caption", "nodeKey": "h1#0" },
+        { "uuid": "8b67d1fc-b053-4d3c-a3e0-8486d90f3a32", "templateName": "Heading 2", "nodeKey": "h2#0" },
+        { "uuid": "5c7d150b-c788-4196-bf80-14269f79e2d4", "templateName": "Numbered List", "nodeKey": "ol#0" },
+        { "uuid": "2bffd85b-2903-497a-aaf5-6b2da101ef97", "templateName": "Image with Caption", "nodeKey": "image#0" },
+        { "uuid": "a0e81c18-5db5-4a23-b8b5-52fc5416a150", "templateName": "Heading 2 with Caption", "nodeKey": "h2#1" },
+        { "uuid": "442fe7d4-7c4c-4035-b493-a6219e24e512", "templateName": "Bullet List", "nodeKey": "ul#0" },
+        { "uuid": "b48fffbd-0e37-493e-bd96-2fae6bd37977", "templateName": "Footer 1", "nodeKey": "footer#0" }
+      ]
+    }
+  },
+  "assets": {}
+}

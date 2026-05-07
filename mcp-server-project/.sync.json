@@ -1,5 +1,6 @@
 {
-  "lastSyncedAt": "2026-05-07T12:21:00.000Z",
+  "lastSyncedAt": "2026-05-07T13:06:30.000Z",
+  "projectJsonBlobSha": "da7f2f0de305505ec612898c7a3f7dd238e186db",
   "remote": {
     "companyId": "dcf0a9e3-c4c9-4a2f-883d-75672e6399dc",
     "projectId": "fc85af5e-81f2-4ae0-a7a7-6fcc253d311a"
@@ -193,6 +194,6 @@
     "assets/07-prompts.png": { "fileMetaId": "440321f2-1821-497a-bcf2-12b93540a76b", "blobSha": "7cb19ed23548cc22a8ba582f1c4ff71b3ce78d0c", "size": 20525 },
     "assets/08-auth-security.png": { "fileMetaId": "bd2a16c7-b547-4d94-8e19-4bc308c4bd68", "blobSha": "4e34ddc2d4b0b0f6c84da54d63cc4cdb4994abf2", "size": 19044 },
     "assets/09-testing.png": { "fileMetaId": "0ab6346a-ecc5-400f-a327-4307798eae61", "blobSha": "19ec364b902204a30c65dc7a0dfc922c671a9d33", "size": 17331 },
-    "assets/10-deploy.png": { "fileMetaId": "d31f069a-5a8b-4c8b-8ed4-75d65c828d41", "blobSha": "f6dc47daa73aae7d46b70b67bfb5eaa0f0398e58", "size": 18912 }
+    "assets/10-deploy.png": { "fileMetaId": "d31f069a-5a8b-4c8b-8ed4-75d65c828d41", "blobSha": "f6dc47daa73ae7d46b70b67bfb5eaa0f0398e58", "size": 18912 }
   }
 }

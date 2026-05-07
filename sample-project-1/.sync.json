@@ -1,5 +1,5 @@
 {
-  "lastSyncedAt": "2026-05-07T00:00:00.000Z",
+  "lastSyncedAt": "2026-05-07T12:21:00.000Z",
   "remote": {
     "companyId": "dcf0a9e3-c4c9-4a2f-883d-75672e6399dc",
     "projectId": "442e135f-9c0e-473f-a834-efde2b07b288"
@@ -46,5 +46,8 @@
       ]
     }
   },
-  "assets": {}
+  "assets": {
+    "assets/cover.png": { "fileMetaId": "4d42d0b7-a15a-425f-9404-ce4ff9abfaa5", "blobSha": "5bf021ee72e4f8ac9da7b5ac8b44053a65a9dca0", "size": 33108 },
+    "assets/sync-flow.png": { "fileMetaId": "a7e44a0a-025b-4345-b97a-8917485e49df", "blobSha": "97288e62444c53b52bcee68fbc5cbba9359e9bdb", "size": 24546 }
+  }
 }

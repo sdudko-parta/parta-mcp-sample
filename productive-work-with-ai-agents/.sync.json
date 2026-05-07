@@ -1,5 +1,6 @@
 {
-  "lastSyncedAt": "2026-05-07T00:00:00.000Z",
+  "lastSyncedAt": "2026-05-07T13:15:00.000Z",
+  "projectJsonBlobSha": "f41c0c5cbf51f675cf8d6d5bd1343c8f90793307",
   "remote": {
     "companyId": "dcf0a9e3-c4c9-4a2f-883d-75672e6399dc",
     "projectId": "7ab44ebc-8bdd-4a7a-8355-5baa5d46963c"
@@ -36,20 +37,6 @@
         { "uuid": "99569ccb-b9d6-40a4-96e6-b3ffd5da596c", "templateName": "Text", "nodeKey": "p#1" }
       ]
     },
-    "pages/02-what-is-an-agent.md": {
-      "sectionId": "f495282b-49d9-4e33-932b-1fb0d9802db9",
-      "blobSha": "4b216748bd04b273c2745dd10d05dd32f70dcc66",
-      "blocks": [
-        { "uuid": "589cd83f-244a-49f7-b176-f650cb451e5f", "templateName": "Heading 1 with Caption", "nodeKey": "h1#0" },
-        { "uuid": "12582bd9-c6cc-4922-821f-6e5194c30f1a", "templateName": "Image with Caption", "nodeKey": "image#0" },
-        { "uuid": "372f2b5d-7763-490f-9881-735600da1fec", "templateName": "Heading 2", "nodeKey": "h2#0" },
-        { "uuid": "dd3023fc-be4b-4ed4-8677-791139a8d992", "templateName": "Text", "nodeKey": "p#0" },
-        { "uuid": "b5ad3d0c-15d7-457d-b2af-bc7da360681a", "templateName": "Heading 2 with Caption", "nodeKey": "h2#1" },
-        { "uuid": "c5897fa4-a8f2-4def-8494-25b67fff5ac8", "templateName": "Code Snippet", "nodeKey": "code#0" },
-        { "uuid": "86dff726-779d-4f62-a8f8-47b51d6e027f", "templateName": "Heading 2 with Divider", "nodeKey": "h2#2" },
-        { "uuid": "5d13e4e3-67dc-40df-ab85-48bb8eeddf16", "templateName": "Text", "nodeKey": "p#1" }
-      ]
-    },
     "pages/03-goals-constraints.md": {
       "sectionId": "713d4365-e76d-46f3-a400-7858d9a57251",
       "blobSha": "ccde3db56f2f10d6304f243331188f632bf49af3",
@@ -63,6 +50,20 @@
         { "uuid": "0f79ad3b-45e1-4507-a241-45fb3f9099f8", "templateName": "Bullet List", "nodeKey": "ul#0" },
         { "uuid": "9efae21f-069e-4adf-8fe3-eb2aba64996d", "templateName": "Heading 2 with Divider", "nodeKey": "h2#2" },
         { "uuid": "73fa0b21-551e-4ee9-82f3-d0756cb291f3", "templateName": "Text", "nodeKey": "p#1" }
+      ]
+    },
+    "pages/02-what-is-an-agent.md": {
+      "sectionId": "f495282b-49d9-4e33-932b-1fb0d9802db9",
+      "blobSha": "4b216748bd04b273c2745dd10d05dd32f70dcc66",
+      "blocks": [
+        { "uuid": "589cd83f-244a-49f7-b176-f650cb451e5f", "templateName": "Heading 1 with Caption", "nodeKey": "h1#0" },
+        { "uuid": "12582bd9-c6cc-4922-821f-6e5194c30f1a", "templateName": "Image with Caption", "nodeKey": "image#0" },
+        { "uuid": "372f2b5d-7763-490f-9881-735600da1fec", "templateName": "Heading 2", "nodeKey": "h2#0" },
+        { "uuid": "dd3023fc-be4b-4ed4-8677-791139a8d992", "templateName": "Text", "nodeKey": "p#0" },
+        { "uuid": "b5ad3d0c-15d7-457d-b2af-bc7da360681a", "templateName": "Heading 2 with Caption", "nodeKey": "h2#1" },
+        { "uuid": "c5897fa4-a8f2-4def-8494-25b67fff5ac8", "templateName": "Code Snippet", "nodeKey": "code#0" },
+        { "uuid": "86dff726-779d-4f62-a8f8-47b51d6e027f", "templateName": "Heading 2 with Divider", "nodeKey": "h2#2" },
+        { "uuid": "5d13e4e3-67dc-40df-ab85-48bb8eeddf16", "templateName": "Text", "nodeKey": "p#1" }
       ]
     },
     "pages/04-choose-the-model.md": {
@@ -178,9 +179,10 @@
     },
     "pages/11-working-in-a-team.md": {
       "sectionId": "5677ac92-3ecc-46ac-a179-6403b983e789",
-      "blobSha": "8134c02fbcb9e957059a68131b4e22bcc9d6b24f",
+      "blobSha": "615039f5c45815afcdd52fbaa0fa86c59863078a",
       "blocks": [
         { "uuid": "49b875bb-6366-4e4f-8a1d-69165f27bf7c", "templateName": "Heading 1 with Caption", "nodeKey": "h1#0" },
+        { "uuid": "87d76efa-0ea2-4d03-a0ae-87e5debb961c", "templateName": "Image with Caption", "nodeKey": "image#0" },
         { "uuid": "f0bd4256-d744-495f-bffb-cdb3c5b6b373", "templateName": "Heading 2", "nodeKey": "h2#0" },
         { "uuid": "a36fbced-e7df-4e72-a3e4-5d5bf286b6bc", "templateName": "Text", "nodeKey": "p#0" },
         { "uuid": "bdd3e052-0f16-4ace-a444-a36080c7fa8a", "templateName": "Text", "nodeKey": "p#1" },
@@ -250,6 +252,11 @@
       "fileMetaId": "09f1d820-4aac-45e7-ab4d-1a97f0665cf3",
       "blobSha": "8036d948d2bd7772a373472c5d1e77d7793fdb05",
       "size": 17079
+    },
+    "productive-work-with-ai-agents/assets/11-working-in-a-team.png": {
+      "fileMetaId": "41288ab3-242f-42a2-9306-d8bda9f37509",
+      "blobSha": "6d148ac0d9308350b585a8e2195f1c1230031067",
+      "size": 26793
     }
   }
 }

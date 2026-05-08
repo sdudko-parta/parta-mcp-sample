@@ -1,6 +1,6 @@
 {
-  "lastSyncedAt": "2026-05-08T12:34:56.000Z",
-  "projectJsonBlobSha": "4dbdec4a846c6fe25e81d476a3e55076f285d28f",
+  "lastSyncedAt": "2026-05-08T14:31:00.000Z",
+  "projectJsonBlobSha": "531c5828e7f8ccca44f73262353947c5f3b6eccf",
   "remote": {
     "companyId": "dcf0a9e3-c4c9-4a2f-883d-75672e6399dc",
     "projectId": "f7d2d1fd-5a04-46fe-b17f-f240c54ef390"
@@ -210,25 +210,6 @@
         { "uuid": "a1c03692-1969-419e-a807-5f150a69e801", "templateName": "Heading 2 with Caption", "nodeKey": "h2#4" },
         { "uuid": "e4a705b3-cd7f-40c2-8548-137ed845f4d9", "templateName": "Text", "nodeKey": "p#6" }
       ]
-    },
-    "pages/13-shipping-to-production.md": {
-      "sectionId": "eb9748ed-0082-42b2-8218-8aaa602f6c4f",
-      "blobSha": "2bdbf4874e77168ef08c60f9e79245b6a540ccb5",
-      "blocks": [
-        { "uuid": "952e7c3e-c8ca-41de-adf3-de045d54559e", "templateName": "Heading 1 with Caption", "nodeKey": "h1#0" },
-        { "uuid": "fe59f3e0-d732-4c39-8c5d-7706709c114b", "templateName": "Image with Caption", "nodeKey": "image#0" },
-        { "uuid": "a029bd20-92bb-467a-aa54-187b9de1b56e", "templateName": "Heading 2", "nodeKey": "h2#0" },
-        { "uuid": "1b902e01-8f05-4df0-92c8-c4e865abff64", "templateName": "Text", "nodeKey": "p#0" },
-        { "uuid": "0e5d6e7d-6657-4c42-b064-7dfc04018cc8", "templateName": "Numbered List", "nodeKey": "ol#0" },
-        { "uuid": "67dd49e6-ff74-45bd-985b-950088ffc20b", "templateName": "Heading 2 with Caption", "nodeKey": "h2#1" },
-        { "uuid": "1cea0725-963f-4293-ae72-7bf4456df027", "templateName": "Text", "nodeKey": "p#1" },
-        { "uuid": "7a4627b7-41cf-42b6-aa4e-442488592623", "templateName": "Bullet List", "nodeKey": "ul#0" },
-        { "uuid": "907b5c89-938c-44c7-9c72-f2662dffab5f", "templateName": "Heading 2 with Divider", "nodeKey": "h2#2" },
-        { "uuid": "150e6a47-5be7-443e-9723-7878a57b05d5", "templateName": "Bullet List", "nodeKey": "ul#1" },
-        { "uuid": "d1eca4d1-f9a6-4ab4-9364-8ec1523cdf77", "templateName": "Heading 2", "nodeKey": "h2#3" },
-        { "uuid": "6be796ca-194e-47e3-8505-e168441a596e", "templateName": "Text", "nodeKey": "p#2" },
-        { "uuid": "46615c55-fb74-4b2e-8636-fa4f72014c4a", "templateName": "Footer 1", "nodeKey": "footer#0" }
-      ]
     }
   },
   "assets": {
@@ -244,7 +225,6 @@
     "assets/09-evaluation.png": { "fileMetaId": "48f1a7ec-33a3-4840-89bf-26ca96f58855", "blobSha": "548c2d8c32e69eafc7387cc53453b729c21933dc", "size": 17316 },
     "assets/10-best-practices.png": { "fileMetaId": "72e63191-1d12-46f2-b942-c2ad98067547", "blobSha": "8036d948d2bd7772a373472c5d1e77d7793fdb05", "size": 17079 },
     "assets/11-working-in-a-team.png": { "fileMetaId": "91264434-a58a-42be-9960-01dfb416f035", "blobSha": "6d148ac0d9308350b585a8e2195f1c1230031067", "size": 26793 },
-    "assets/12-security-sandboxing.png": { "fileMetaId": "59a0d1c8-d357-4f4e-aa66-83949a73ed26", "blobSha": "fd32529647ccb929e54697fc9cd2303b275faa11", "size": 36922 },
-    "assets/13-shipping-to-production.png": { "fileMetaId": "7b83f936-0c9d-4862-8141-754fef7a88dd", "blobSha": "fd32529647ccb929e54697fc9cd2303b275faa11", "size": 36922 }
+    "assets/12-security-sandboxing.png": { "fileMetaId": "59a0d1c8-d357-4f4e-aa66-83949a73ed26", "blobSha": "fd32529647ccb929e54697fc9cd2303b275faa11", "size": 36922 }
   }
 }

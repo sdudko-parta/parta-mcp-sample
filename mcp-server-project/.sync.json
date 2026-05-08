@@ -1,6 +1,6 @@
 {
-  "lastSyncedAt": "2026-05-07T00:00:00.000Z",
-  "projectJsonBlobSha": "23ea1554bd20914da18c2e7d673203bc8e9b5a60",
+  "lastSyncedAt": "2026-05-08T05:09:00.000Z",
+  "projectJsonBlobSha": "0be03536f45fbf3feb4e5baa3399bf9b3321a264",
   "remote": {
     "companyId": "dcf0a9e3-c4c9-4a2f-883d-75672e6399dc",
     "projectId": "fc85af5e-81f2-4ae0-a7a7-6fcc253d311a"
@@ -144,24 +144,6 @@
         { "uuid": "fc7a0710", "templateName": "Code Snippet", "nodeKey": "code#1" },
         { "uuid": "a321c883", "templateName": "Heading 2 with Caption", "nodeKey": "h2#2" }
       ]
-    },
-    "pages/10-deploy.md": {
-      "sectionId": "3f61f140",
-      "blobSha": "44bdfeebfa149d089f6bc40a252cbaa25f10cac7",
-      "blocks": [
-        { "uuid": "4f7396ee", "templateName": "Heading 1 with Caption", "nodeKey": "h1#0" },
-        { "uuid": "d0de2604", "templateName": "Image with Caption", "nodeKey": "image#0" },
-        { "uuid": "55287bbd", "templateName": "Heading 2", "nodeKey": "h2#0" },
-        { "uuid": "408716ad", "templateName": "Code Snippet", "nodeKey": "code#0" },
-        { "uuid": "b18f5fa4", "templateName": "Text", "nodeKey": "p#0" },
-        { "uuid": "436cf72f", "templateName": "Heading 2 with Caption", "nodeKey": "h2#1" },
-        { "uuid": "718d6087", "templateName": "Code Snippet", "nodeKey": "code#1" },
-        { "uuid": "7a539102", "templateName": "Text", "nodeKey": "p#1" },
-        { "uuid": "25609460", "templateName": "Heading 2 with Divider", "nodeKey": "h2#2" },
-        { "uuid": "3c75cf8e", "templateName": "Bullet List", "nodeKey": "ul#0" },
-        { "uuid": "a4682af9", "templateName": "Heading 2 with Caption", "nodeKey": "h2#3" },
-        { "uuid": "5bac1c70", "templateName": "Footer 1", "nodeKey": "footer#0" }
-      ]
     }
   },
   "assets": {
@@ -209,11 +191,6 @@
       "fileMetaId": "68c11bff-cc76-4cc2-baee-4180bb74fc90",
       "blobSha": "19ec364b902204a30c65dc7a0dfc922c671a9d33",
       "size": 17331
-    },
-    "mcp-server-project/assets/10-deploy.png": {
-      "fileMetaId": "4910c57f-e1ea-4e27-bc0c-455233014f28",
-      "blobSha": "f6dc47daa73aae7d46b70b67bfb5eaa0f0398e58",
-      "size": 18912
     }
   }
 }

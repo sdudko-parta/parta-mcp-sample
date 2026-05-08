@@ -62,6 +62,11 @@
       "name": "Security and Sandboxing",
       "description": "What not to give the agent, how to isolate tools, and how to keep secrets out of the loop.",
       "ref": "pages/12-security-sandboxing.md"
+    },
+    {
+      "name": "Shipping to Production",
+      "description": "A pre-flight checklist for taking your agent from a working demo to a production deployment with caps, rollbacks, and an owner.",
+      "ref": "pages/13-shipping-to-production.md"
     }
   ]
 }

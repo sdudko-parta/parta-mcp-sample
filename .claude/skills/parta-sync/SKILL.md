@@ -74,6 +74,11 @@ After a successful sync, write `<dir>/.sync.json` to the **course repo** (`sdudk
     "Continue Button": "tpl_…",
     "Footer 1": "tpl_…"
   },
+  "templateSchemas": {
+    "Heading 1":              { "…": "bankContentSchema body returned by get_editor_block_by_template_id" },
+    "Heading 2 with Caption": { "…": "…" },
+    "Text":                   { "…": "…" }
+  },
   "pages": {
     "pages/01-welcome.md": {
       "sectionId": "sec_…",
@@ -142,9 +147,9 @@ Once per sync:
 
 1. `list_editor_template_groups` for the company. Pick the group whose name is exactly `Parta Quick-Start Collection` (`get_template_choice_defaults` confirms the default).
 2. `list_editor_templates` for that group. Build a `templateName → templateId` map.
-3. For every template name referenced in §8 call `get_editor_block_by_template_id` once and cache the `bankContentSchema`. That schema is the source of truth for content keys.
+3. For every template name referenced in §8, call `get_editor_block_by_template_id` **in parallel** (one fan-out across all templates — these are independent reads). Cache the returned `bankContentSchema` per template. That schema is the source of truth for content keys.
 
-If `.sync.json` already records `templates[name] → templateId`, reuse them and skip discovery.
+**Cross-run cache.** If `.sync.json.templates` and `.sync.json.templateSchemas` are both populated from a prior run, reuse them and skip the entire section — schemas are stable unless someone edits the template in Parta. A `validation.errors` response on a write in §7 is the cache-miss signal: refetch only that one template's schema (single `get_editor_block_by_template_id` call), update the in-memory cache, and retry just the offending block. Don't refetch the whole group — the other templates didn't change. The §0 manifest short-circuit means most cron runs never reach §3 anyway, but skipping it on a content-edit run still saves ~16 round-trips against Parta.
 
 ### 4. Build the desired state
 
@@ -208,8 +213,15 @@ For each planned block:
    - `code` slot ← `{ language, code }` from the fenced block (`language` from the info string; default `text`).
    - `table` slot ← `{ header, rows }` from the GFM table; do not transform cells.
    - `caption`, `heading`, `label`, `url` ← copy from the parsed payload by name.
-3. Build `bankContentItems` using **only** keys present in the cached schema. Do not invent keys.
-4. Call `update_editor_block` (or batch `update_editor_blocks`, ≤ 50). Inspect `validation.errors`; retry only the offending entries.
+3. Build `bankContentItems` covering **every slot declared in the cached schema for this template** — not just the slots the markdown filled. Slots present in the parsed payload get the rendered value; slots the markdown didn't fill get the empty sentinel for the slot's declared type (`""` for string, `[]` for array, `null` for object/`fileId`-bearing slot). This is what overwrites stale content surviving from an earlier template revision — Parta's update is merge-semantics, so any slot you omit keeps its old value. Do not invent keys outside the schema.
+4. **Always batch.** Call `update_editor_blocks` with up to 50 blocks of one section per call (one batch per section). A single `update_editor_block` is only for retrying the one item the batch endpoint rejected. Inspect `validation.errors`; retry only the offending entries.
+5. **Verify the write (read-after-write).** After the batch returns success, re-fetch every block that was created or updated this run via `get_editor_block` **in parallel — across all sections and all blocks**. Reads are not section-transactional, so this fan-out is unconstrained and adds one round-trip of latency, not N. For each block, compare the persisted `bankContentItems` slot-by-slot against the desired payload from step 3:
+   - `richText`: parse-and-restringify both sides through the same HTML normalizer; compare the normalized strings (whitespace and self-closing-tag spelling are not significant).
+   - `image`: literal match on `fileId`, `alt`, `zoomable`, `overlay`.
+   - `code`: literal match on `language` and `code`.
+   - `table`: structural match on `header` and `rows`.
+   - Scalars (`caption`, `heading`, `label`, `url`, …): literal match.
+   On any mismatch, re-issue `update_editor_block` for that one block exactly once, then re-fetch and re-compare. If the second read-back still differs, log the block id, the offending slot, and `desired` vs `persisted` values, then **abort the run before §10 — `.sync.json` is not written**, so the next run retries idempotently from a known-good state. This step exists specifically because Parta has shown the "old slot data persists after update" failure mode intermittently; without verification the run silently records a stale-but-plausible state in `.sync.json` and the next run sees no diff to fix.
 
 ### 8. Cheat-sheet: markdown node → Quick-Start template
 

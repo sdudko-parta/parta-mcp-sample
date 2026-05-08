@@ -25,7 +25,9 @@ If the user invokes the skill against a different repo, ask once at the start of
 /parta-sync coffee-brewing-basics
 ```
 
-If invoked without an argument, ask the user which directory to sync. Only directories that contain a `project.json` at the repo root are valid.
+The argument is the **course name** — the directory name under `projects/`, never a path. The skill resolves every read/write to `projects/<arg>/...` internally.
+
+If invoked without an argument, list `projects/` via `get_file_contents(owner=sdudko-parta, repo=parta-mcp-sample, path=projects)`, keep entries with `type == "dir"` whose listing contains a `project.json`, and ask the user which one to sync. Adding or removing a course is purely a `projects/` directory change — the skill picks it up automatically; nothing else has to be edited.
 
 For scheduled runs the same command is used. The scheduler does not need a working directory and must not run `git pull` or any other shell setup — every read and write goes through MCPs.
 
@@ -45,13 +47,15 @@ Lifecycle:
 
 ## Inputs (read via GitHub MCP)
 
-| Path                  | How to read                                                          | Role                                                                                                                                  |
-|-----------------------|----------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
-| `schema.json`         | `get_file_contents(owner=sdudko-parta, repo=parta-mcp-sample, path=schema.json)` | JSON Schema for `project.json`. Validate `project.json` locally before any Parta call.                                  |
-| `<dir>/project.json`  | `get_file_contents(owner=sdudko-parta, repo=parta-mcp-sample, path=<dir>/project.json)` | Course shell. Capture the file's git blob `sha` from the response — recorded in `.sync.json.projectJsonBlobSha` for the §0 manifest check on the next run. |
-| `<dir>/pages/<file>.md` | `get_file_contents(owner=sdudko-parta, repo=parta-mcp-sample, path=<dir>/pages/<file>.md)` | One markdown file per page; referenced from `project.json#/pages[*].ref`. Capture each file's blob `sha`.  |
-| `<dir>/assets`        | `get_file_contents(owner=sdudko-parta, repo=parta-mcp-sample, path=<dir>/assets)` (returns directory listing) | Each entry has the asset's git blob `sha` and `size`. This is the asset inventory.              |
-| `<dir>/.sync.json`    | `get_file_contents(owner=sdudko-parta, repo=parta-mcp-sample, path=<dir>/.sync.json)` | (Optional) state from the previous successful sync. Drives the delta. A 404 means first run — do not treat as an error. |
+All course content lives under `projects/`. Throughout this section `<dir>` is the **course name** (the directory under `projects/`); the actual GitHub paths the skill passes to `get_file_contents` are `projects/<dir>/...`.
+
+| Path                          | How to read                                                          | Role                                                                                                                                  |
+|-------------------------------|----------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
+| `projects/schema.json`        | `get_file_contents(owner=sdudko-parta, repo=parta-mcp-sample, path=projects/schema.json)` | JSON Schema for `project.json`. Validate `project.json` locally before any Parta call.                       |
+| `projects/<dir>/project.json` | `get_file_contents(owner=sdudko-parta, repo=parta-mcp-sample, path=projects/<dir>/project.json)` | Course shell. Capture the file's git blob `sha` from the response — recorded in `.sync.json.projectJsonBlobSha` for the §0 manifest check on the next run. |
+| `projects/<dir>/pages/<file>.md` | `get_file_contents(owner=sdudko-parta, repo=parta-mcp-sample, path=projects/<dir>/pages/<file>.md)` | One markdown file per page; referenced from `project.json#/pages[*].ref`. Capture each file's blob `sha`.  |
+| `projects/<dir>/assets`       | `get_file_contents(owner=sdudko-parta, repo=parta-mcp-sample, path=projects/<dir>/assets)` (returns directory listing) | Each entry has the asset's git blob `sha` and `size`. This is the asset inventory.              |
+| `projects/<dir>/.sync.json`   | `get_file_contents(owner=sdudko-parta, repo=parta-mcp-sample, path=projects/<dir>/.sync.json)` | (Optional) state from the previous successful sync. Drives the delta. A 404 means first run — do not treat as an error. |
 
 The git blob `sha` returned by GitHub for each file is content-addressed and stable — use it directly as the change-detection key. Don't compute sha256 yourself; you have no local file to hash.
 
@@ -59,7 +63,7 @@ Every read above omits the `ref` parameter and therefore resolves against `main`
 
 ## State persisted (written via GitHub MCP)
 
-After a successful sync, write `<dir>/.sync.json` to the **course repo** (`sdudko-parta/parta-mcp-sample`) via `create_or_update_file(branch=<working branch>)` (see "Branching, PR, and merge" — the working branch is created lazily in §10). Commit message: `parta-sync state: <dir>`. Once §11 merges the PR, `.sync.json` lands on `main` and becomes visible to the next run's §0 manifest check.
+After a successful sync, write `projects/<dir>/.sync.json` to the **course repo** (`sdudko-parta/parta-mcp-sample`) via `create_or_update_file(branch=<working branch>)` (see "Branching, PR, and merge" — the working branch is created lazily in §10). Commit message: `parta-sync state: <dir>`. Once §11 merges the PR, `.sync.json` lands on `main` and becomes visible to the next run's §0 manifest check.
 
 ```jsonc
 {
@@ -128,10 +132,10 @@ The most common case on a cron run is "nothing changed." Fail fast before any pa
 
 In a single batch (parallel `get_file_contents` calls):
 
-1. `<dir>/project.json` — capture body and blob `sha`.
-2. `<dir>/pages` — directory listing; capture each page path and blob `sha`.
-3. `<dir>/assets` — directory listing; capture each asset path, blob `sha`, and `size`.
-4. `<dir>/.sync.json` — previous state. 404 → first run; skip the comparison and fall through to §1, reusing the data above.
+1. `projects/<dir>/project.json` — capture body and blob `sha`.
+2. `projects/<dir>/pages` — directory listing; capture each page path and blob `sha`.
+3. `projects/<dir>/assets` — directory listing; capture each asset path, blob `sha`, and `size`.
+4. `projects/<dir>/.sync.json` — previous state. 404 → first run; skip the comparison and fall through to §1, reusing the data above.
 
 If `.sync.json` exists, compare four things against the recorded slice:
 
@@ -146,13 +150,13 @@ Any mismatch → fall through to §1, **reusing the data already fetched** (don'
 
 ### 1. Validate
 
-1. `get_file_contents(repo=parta-mcp-sample, path=schema.json)` → parse the JSON Schema once.
+1. `get_file_contents(repo=parta-mcp-sample, path=projects/schema.json)` → parse the JSON Schema once.
 2. Validate `project.json` (already fetched in §0) against the schema, especially `pages[*].ref` matches `^pages/.+\.md$`.
-3. Fetch every `<dir>/<ref>` from `pages[*].ref` **in parallel** via `get_file_contents`. A 404 on any of them aborts the run with a message naming the missing page. Capture each file's blob `sha`.
+3. Fetch every `projects/<dir>/<ref>` from `pages[*].ref` **in parallel** via `get_file_contents`. A 404 on any of them aborts the run with a message naming the missing page. Capture each file's blob `sha`.
 
 ### 2. Resolve company and project
 
-- If `<dir>/.sync.json` exists in the course repo and records `remote.projectId`, verify the project still exists with `list_editor_projects`. If gone, treat as a fresh sync (drop the in-memory state; do not delete `.sync.json` yet — §10 will overwrite it).
+- If `projects/<dir>/.sync.json` exists in the course repo and records `remote.projectId`, verify the project still exists with `list_editor_projects`. If gone, treat as a fresh sync (drop the in-memory state; do not delete `.sync.json` yet — §10 will overwrite it).
 - Else (fresh sync — no `.sync.json` yet, or its project id no longer resolves):
   - Call `list_companies` and ask the user to pick one.
   - Call `create_editor_project` with the resolved company and `project.json#/name`.
@@ -177,9 +181,9 @@ For each entry in `project.json#/pages`, in order:
    - `nodeKey` = `<type>#<index>` where the index is per-type within this page (`h1#0`, `h2#0`, `h2#1`, `p#0`, `image#0`, `code#0`, …). It is stable across re-runs unless the markdown structure itself changes.
    - `templateName` comes from the table; resolve variants per the variety rule below.
    - `payload` carries the rendered HTML for richText slots, the asset reference for image/video/audio slots, and the raw fields for code/table slots.
-3. Collect every asset reference found in the page (`![alt](../assets/foo.png)`, link nodes that point at downloadable types). Resolve to a repo-relative path (`<dir>/assets/foo.png`).
+3. Collect every asset reference found in the page (`![alt](../assets/foo.png)`, link nodes that point at downloadable types). Resolve to a course-relative path (`assets/foo.png`) — this is the key written into `.sync.json.assets`. The repo-relative form `projects/<dir>/assets/foo.png` is only used when calling `get_file_contents` or building the `upload_file_from_url` raw URL.
 
-After all pages have been parsed, the `<dir>/assets` directory listing fetched in §1 is the master asset inventory — each entry has `path`, `sha`, `size`.
+After all pages have been parsed, the `projects/<dir>/assets` directory listing fetched in §1 is the master asset inventory — each entry has `path`, `sha`, `size`.
 
 ### 5. Sync assets first
 
@@ -190,7 +194,7 @@ Asset uploads are independent — issue `upload_file_from_url` calls **in parall
 For each asset referenced by at least one page:
 
 1. If `.sync.json.assets[path]` exists and the recorded `blobSha` matches the current one from the directory listing, reuse `fileMetaId`. Skip upload.
-2. Otherwise call `upload_file_from_url` with `https://raw.githubusercontent.com/sdudko-parta/parta-mcp-sample/main/<path>`. Capture the returned `fileMetaId`.
+2. Otherwise call `upload_file_from_url` with `https://raw.githubusercontent.com/sdudko-parta/parta-mcp-sample/main/projects/<dir>/<path>` where `<path>` is the course-relative key (`assets/<file>`). Capture the returned `fileMetaId`.
 3. If the path previously had a different `fileMetaId`, buffer the old id in `replacedFileMetaIds[]`. It will be deleted at the end of §10, after every block referencing it has been rebound to the new id.
 4. Record the new `fileMetaId`, `blobSha`, `size` in the in-memory `.sync.json.assets[path]`.
 
@@ -283,8 +287,8 @@ Only on full success — i.e., §7 finished without leaving any block pointing a
 
 1. **Create the working branch** (lazy, see "Branching, PR, and merge" above). `create_branch(owner=sdudko-parta, repo=parta-mcp-sample, branch=claude/parta-sync-<dir>-<UTC-YYYYMMDD-HHMMSS>, from_branch=main)`. This is the first GitHub write of the run; a `403` here aborts with the write-auth message and no Parta state is persisted. Hold the branch name for the next two steps and §11.
 2. For each id in `replacedFileMetaIds` (collected in §5), call the **Parta MCP** `delete_file(fileMetaId=<old>)` (note: this is the Parta tool, not the GitHub one) **in parallel**. A failure here is logged but does not abort the run — by this point all blocks already point at the new asset, so the orphan is harmless. **Order matters:** never delete before §7 completes; otherwise a transient block would reference a missing file.
-3. Build the new `<dir>/.sync.json` payload. `projectJsonBlobSha` is the blob `sha` captured in §0 — `project.json` is never modified by the skill, so this value is always the one that was just read.
-4. Write `<dir>/.sync.json` via `create_or_update_file(branch=<working branch>)`. On a fresh sync (no prior `.sync.json` blob `sha`) omit the `sha` parameter; otherwise pass the `sha` captured in §0 (the blob lives on `main` — that is what we're branching from, so it is the correct base sha for the create-or-update against the new branch). Commit message: `parta-sync state: <dir>`.
+3. Build the new `projects/<dir>/.sync.json` payload. `projectJsonBlobSha` is the blob `sha` captured in §0 — `project.json` is never modified by the skill, so this value is always the one that was just read.
+4. Write `projects/<dir>/.sync.json` via `create_or_update_file(branch=<working branch>, path=projects/<dir>/.sync.json, …)`. On a fresh sync (no prior `.sync.json` blob `sha`) omit the `sha` parameter; otherwise pass the `sha` captured in §0 (the blob lives on `main` — that is what we're branching from, so it is the correct base sha for the create-or-update against the new branch). Commit message: `parta-sync state: <dir>`.
 
 Exactly one commit per course on every run that reached §10, on the working branch.
 

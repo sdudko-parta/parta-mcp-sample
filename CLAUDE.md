@@ -4,7 +4,7 @@ Context for Claude Code working inside this repo.
 
 ## What this repo is
 
-A reference layout for Parta course projects mirrored as plain files. Each course is a directory with `project.json` (validated by `schema.json` at the repo root), `pages/*.md`, and `assets/*`. The `parta-sync` skill in `.claude/skills/parta-sync/` pushes the local state into Parta via the Parta MCP.
+A reference layout for Parta course projects mirrored as plain files. All course directories live under `projects/`. Each course is a directory with `project.json` (validated by `projects/schema.json`), `pages/*.md`, and `assets/*`. The number of courses is dynamic — adding one is just a new subdirectory under `projects/`; no other file needs to be edited. The `parta-sync` skill in `.claude/skills/parta-sync/` pushes the local state into Parta via the Parta MCP.
 
 This is **not** a code project — there is no build, no tests, no runtime. It's content + one skill. The skill is MCP-only: it reads the repo through the GitHub MCP and writes to Parta through the Parta MCP. There is no local clone to maintain.
 
@@ -18,16 +18,18 @@ This is **not** a code project — there is no build, no tests, no runtime. It's
 
 ## Adding a new course
 
-1. `cp -r sample-project-1 my-new-course`
-2. Edit `my-new-course/project.json` — set `name`, `description`, replace the `pages` array.
-3. Add page markdown under `pages/` matching the `ref` paths.
-4. Drop assets into `assets/`.
+1. `cp -r projects/sample-project-1 projects/my-new-course`
+2. Edit `projects/my-new-course/project.json` — set `name`, `description`, replace the `pages` array.
+3. Add page markdown under `projects/my-new-course/pages/` matching the `ref` paths.
+4. Drop assets into `projects/my-new-course/assets/`.
 5. Run `/parta-sync my-new-course`.
+
+The skill and `ROUTINE.sample.md` discover the course list from the `projects/` directory listing on each run — neither file needs to be edited when courses are added or removed.
 
 ## Adding a new page to an existing course
 
-1. Add the markdown file under `<course>/pages/`.
-2. Add an entry to `pages` in `project.json` at the desired position.
+1. Add the markdown file under `projects/<course>/pages/`.
+2. Add an entry to `pages` in `projects/<course>/project.json` at the desired position.
 3. Run `/parta-sync <course>` — only the new section + content for it gets created.
 
 ## Things not to touch by hand

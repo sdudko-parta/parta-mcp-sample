@@ -8,29 +8,36 @@ The same layout makes it easy to also mirror this repo to GitHub via the GitHub 
 
 ```text
 .
-├── schema.json                          # JSON schema for project.json
-├── sample-project-1/                    # minimal template — copy this for new courses
-│   ├── project.json
-│   ├── pages/
-│   │   ├── 01-welcome.md
-│   │   └── 02-getting-started.md
-│   └── assets/
-│       ├── cover.png
-│       └── sync-flow.png
-├── mcp-server-project/                  # real 10-page course
-│   ├── project.json
-│   ├── pages/01-welcome.md … 10-deploy.md
-│   └── assets/01-welcome.png … 10-deploy.png
-├── productive-work-with-ai-agents/      # real 10-page course
-│   ├── project.json
-│   ├── pages/01-welcome.md … 10-best-practices.md
-│   └── assets/01-welcome.png … 10-best-practices.png
+├── projects/
+│   ├── schema.json                      # JSON schema for every project.json under here
+│   ├── sample-project-1/                # minimal template — copy this for new courses
+│   │   ├── project.json
+│   │   ├── pages/
+│   │   │   ├── 01-welcome.md
+│   │   │   └── 02-getting-started.md
+│   │   └── assets/
+│   │       ├── cover.png
+│   │       └── sync-flow.png
+│   ├── mcp-server-project/              # real course
+│   │   ├── project.json
+│   │   ├── pages/01-welcome.md … 10-deploy.md
+│   │   └── assets/01-welcome.png … 10-deploy.png
+│   ├── productive-work-with-ai-agents/  # real course
+│   │   ├── project.json
+│   │   ├── pages/01-welcome.md … 13-shipping-to-production.md
+│   │   └── assets/01-welcome.png … 13-shipping-to-production.png
+│   └── coffee-brewing-basics/           # real course
+│       └── …
+├── ROUTINE.sample.md                    # prompt for the scheduled cron run
+├── CLAUDE.md                            # context for Claude Code in this repo
 └── .claude/
     └── skills/parta-sync/
         └── SKILL.md
 ```
 
-After the first sync, each project also contains a `.sync.json` recording what was last pushed (project id, section ids per page, block uuids per markdown node, file ids per asset, git blob shas, last-sync timestamp). It's how the skill computes a delta on subsequent runs. The skill commits `.sync.json` back to `main` itself via the GitHub MCP — you don't write it by hand.
+The course list under `projects/` is dynamic — add or remove a directory and the skill (and the routine) pick it up on the next run. There is no manifest of courses to maintain anywhere else.
+
+After the first sync, each project also contains a `.sync.json` recording what was last pushed (project id, section ids per page, block uuids per markdown node, file ids per asset, git blob shas, last-sync timestamp). It's how the skill computes a delta on subsequent runs. The skill commits `.sync.json` back through a per-run feature branch + auto-merged PR via the GitHub MCP — you don't write it by hand.
 
 ## Anatomy of a project
 
@@ -53,7 +60,9 @@ The skill talks to GitHub through the GitHub MCP and to Parta through the Parta 
 /parta-sync mcp-server-project
 ```
 
-On first run the skill creates the project in Parta (you'll be asked which company), uploads each referenced asset via `upload_file_from_url` against its raw GitHub URL, and for every page creates one section (a cover for `pages[0]`, a landing for the rest) plus a sequence of blocks drawn from the **Parta Quick-Start Collection** template group — one block per markdown node (heading, paragraph, image, list, code, quote, table, divider, …). It then commits `mcp-server-project/.sync.json` (which records the new Parta project id and company id) back to `main` via the GitHub MCP.
+The argument is the **course name** — the directory under `projects/`, never a full path.
+
+On first run the skill creates the project in Parta (you'll be asked which company), uploads each referenced asset via `upload_file_from_url` against its raw GitHub URL, and for every page creates one section (a cover for `pages[0]`, a landing for the rest) plus a sequence of blocks drawn from the **Parta Quick-Start Collection** template group — one block per markdown node (heading, paragraph, image, list, code, quote, table, divider, …). It then commits `projects/mcp-server-project/.sync.json` (which records the new Parta project id and company id) to a feature branch via the GitHub MCP, opens a PR, and squash-merges it.
 
 On subsequent runs it compares git blob shas against `.sync.json` and only touches what changed:
 

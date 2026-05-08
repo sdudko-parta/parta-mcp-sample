@@ -14,15 +14,11 @@ Every change MUST land on a per-course feature branch named `claude/parta-sync-<
 
 ## Steps
 
-1. For each course directory at the repo root that contains a `project.json`, in this order:
+1. **Discover the course list.** Call `get_file_contents(owner=sdudko-parta, repo=parta-mcp-sample, path=projects)` once. Keep entries with `type == "dir"` (drop `projects/schema.json` and any other non-directory files). Sort the directory names alphabetically for a stable run order. This list is the single source of truth for which courses exist on this run — do **not** carry course names in this prompt; do **not** consult `.sync.json` to decide what to sync. Adding or removing a course is a `projects/` directory change in the repo and nothing here needs to be edited.
 
-   - `mcp-server-project`
-   - `productive-work-with-ai-agents`
-   - `sample-project-1`
+2. For each course `<dir>` from step 1, run `/parta-sync <dir>` (the argument is the course name, not a path; the skill resolves everything to `projects/<dir>/...`). The skill reads `projects/<dir>/project.json`, all `projects/<dir>/pages/*.md`, the `projects/<dir>/assets` listing, and `projects/<dir>/.sync.json` from `main` via `get_file_contents`. It uploads referenced assets via `upload_file_from_url` against `https://raw.githubusercontent.com/sdudko-parta/parta-mcp-sample/main/projects/<dir>/<asset path>`, creates/updates sections and blocks in Parta from the **Parta Quick-Start Collection** template group, then (only if there is a delta) creates the feature branch, commits the new `projects/<dir>/.sync.json` to it, opens a PR to `main`, and squash-merges the PR. Each course is fully independent: its own branch, its own PR, its own merge.
 
-   run `/parta-sync <dir>`. The skill reads `<dir>/project.json`, all `<dir>/pages/*.md`, the `<dir>/assets` listing, and `<dir>/.sync.json` from `main` via `get_file_contents`. It uploads referenced assets via `upload_file_from_url` against `https://raw.githubusercontent.com/sdudko-parta/parta-mcp-sample/main/<path>`, creates/updates sections and blocks in Parta from the **Parta Quick-Start Collection** template group, then (only if there is a delta) creates the feature branch, commits the new `<dir>/.sync.json` to it, opens a PR to `main`, and squash-merges the PR. Each course is fully independent: its own branch, its own PR, its own merge.
-
-2. If any `/parta-sync` invocation fails, stop, report the failing directory and the underlying error (including the partial branch name and PR URL if either was created), and skip the remaining directories. The skill will not have written `.sync.json` to `main` on failure (the merge is the only thing that lands state on `main`), so the next run retries from a consistent state.
+3. If any `/parta-sync` invocation fails, stop, report the failing course and the underlying error (including the partial branch name and PR URL if either was created), and skip the remaining courses. The skill will not have written `.sync.json` to `main` on failure (the merge is the only thing that lands state on `main`), so the next run retries from a consistent state.
 
 ## Output
 

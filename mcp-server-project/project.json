@@ -47,11 +47,6 @@
       "name": "Testing the Server",
       "description": "Use the MCP Inspector and unit tests to keep behavior honest.",
       "ref": "pages/09-testing.md"
-    },
-    {
-      "name": "Deploy and Integrate",
-      "description": "Package the server and wire it into Claude Code or another MCP client.",
-      "ref": "pages/10-deploy.md"
     }
   ]
 }

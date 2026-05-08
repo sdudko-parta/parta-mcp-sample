@@ -14,6 +14,15 @@ Agents fail. The good ones notice, recover, and keep going; the bad ones spiral.
 
 Retry budgets exist for a reason. Five attempts on the same failing tool is a signal that the **plan is wrong**, not that the tool is flaky. Fail loudly, surface to the user, and let them course-correct.
 
+## Backoff and idempotency
+
+Two cheap habits that change retry from "make it worse" to "make it work":
+
+1. **Exponential backoff with jitter.** A tool that just failed will probably fail again on the very next call. Wait a little — and randomize the wait so a hundred parallel agents don't retry in lockstep. A common shape is `min(cap, base * 2^attempt) + random(0, base)`. Cap at something the user can wait for; budget the **total** wait, not just the per-attempt one.
+2. **Idempotency before retry.** Retrying a read is free. Retrying a write can double-charge a card or create two pull requests. Make the tool idempotent before you make it retryable: an idempotency key on the request, or a check-then-act inside the tool that no-ops if the work is already done. Tools without that property should fail closed — surface the error and let the user decide.
+
+A useful split: distinguish **transient** failures (network, rate limit, 5xx) — retry — from **deterministic** ones (4xx, schema mismatch, missing resource) — don't. The agent burning its budget on a 404 is the most common version of the spiral.
+
 ## A practical rule
 
 If the agent is stuck on something a junior engineer would also be stuck on, the answer isn't more tokens — it's better tools or a better brief.

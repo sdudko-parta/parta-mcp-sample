@@ -1,0 +1,122 @@
+{
+  "lastSyncedAt": "2026-05-08T12:00:00.000Z",
+  "projectJsonBlobSha": "58f3ff36e562d838e549dc6669a2bfe587c761d6",
+  "remote": {
+    "companyId": "dcf0a9e3-c4c9-4a2f-883d-75672e6399dc",
+    "projectId": "987358eb-e412-4212-a275-582d52f96ff4"
+  },
+  "templateGroup": {
+    "id": "bb96540a-ae08-4a04-8bef-61505cf742f4",
+    "name": "Parta Quick-Start Collection"
+  },
+  "templates": {
+    "Cover 4": "6ee964fe-44c4-43eb-b853-013dd495fb6a",
+    "Heading 1 with Caption": "de4aa646-9452-42e8-b1d3-0dd124eab6e7",
+    "Image with Caption": "b7797917-a2af-4635-a142-1f4a76d6b2fa",
+    "Heading 2": "529ae6e5-a9b1-4a6a-b53a-104b7d578bbd",
+    "Heading 2 with Caption": "04aad22f-341a-4f28-9940-1130530afe72",
+    "Heading 2 with Divider": "0d09af1b-d447-4a04-b336-788c41bc26af",
+    "Heading 2 with Icon": "0f2dd6d1-31de-4407-8057-9cdd50567e3f",
+    "Text": "99784d9d-bdab-4200-ad89-01dfadfcbc41",
+    "Bullet List": "1a7e35b9-3550-4451-950d-c2141955ddf2",
+    "Numbered List": "8e391859-008d-47c6-b755-24ac2356448e",
+    "Footer 1": "aa663baa-466f-4dc9-90d6-4cd06c00258b"
+  },
+  "pages": {
+    "pages/01-welcome.md": {
+      "sectionId": "4f4db104-0a85-406c-b6cb-78219d249157",
+      "blobSha": "32aec5ae24d13f95fae35d9ed13a297f1b288e89",
+      "blocks": [
+        {"uuid": "cb096979-623b-4e91-83ea-884955a2b0f6", "templateName": "Cover 4", "nodeKey": "cover#0"}
+      ]
+    },
+    "pages/02-beans-and-grind.md": {
+      "sectionId": "92c1d36c-f34a-462c-8ad9-85b5e32b4c30",
+      "blobSha": "d3c11c32623fcd481111fd97bf4cea0e2ffae3cc",
+      "blocks": [
+        {"uuid": "08c541da-ba49-449a-bb4c-c6a2d56dbdc8", "templateName": "Heading 1 with Caption", "nodeKey": "h1#0"},
+        {"uuid": "b952a23a-55e0-4abf-89de-99958dc8f36a", "templateName": "Image with Caption", "nodeKey": "image#0"},
+        {"uuid": "f75e5e0c-2aa9-4bbf-8f16-9dff4530f3e7", "templateName": "Heading 2", "nodeKey": "h2#0"},
+        {"uuid": "af1cbdc1-e817-4faa-9031-dd85f363384f", "templateName": "Bullet List", "nodeKey": "list#0"},
+        {"uuid": "c7f4909e-41e5-4577-aa6b-6ba119646758", "templateName": "Heading 2 with Caption", "nodeKey": "h2#1"},
+        {"uuid": "c042596f-543c-4116-9b18-199439404631", "templateName": "Bullet List", "nodeKey": "list#1"},
+        {"uuid": "f6ae55bd-6f14-4d6c-83f3-9b3ea949201b", "templateName": "Text", "nodeKey": "p#0"}
+      ]
+    },
+    "pages/03-water-and-ratios.md": {
+      "sectionId": "f397e78d-39b9-421d-9ad7-3f36b0ad928b",
+      "blobSha": "046418fb093ad50944608ca915f0160b50ae341e",
+      "blocks": [
+        {"uuid": "8622b3ce-b1aa-4224-b4ad-22d0298a3b86", "templateName": "Heading 1 with Caption", "nodeKey": "h1#0"},
+        {"uuid": "638212db-2bb3-49a4-8774-1093816991a3", "templateName": "Image with Caption", "nodeKey": "image#0"},
+        {"uuid": "8fd9f204-db0b-4fa1-86a5-34d1dc461ca1", "templateName": "Heading 2", "nodeKey": "h2#0"},
+        {"uuid": "18012ad4-f28d-4041-a748-90f214b37775", "templateName": "Bullet List", "nodeKey": "list#0"},
+        {"uuid": "11a45694-c364-40a1-b41d-932498d09bfd", "templateName": "Heading 2 with Caption", "nodeKey": "h2#1"},
+        {"uuid": "f4c4b210-6e71-4a79-8936-e9c1d11a2c79", "templateName": "Bullet List", "nodeKey": "list#1"},
+        {"uuid": "d79554bf-00f2-4ff9-b070-ed175396a02c", "templateName": "Text", "nodeKey": "p#0"},
+        {"uuid": "4a075491-ae4b-4c2c-8b34-fb2299f3a6a8", "templateName": "Heading 2 with Divider", "nodeKey": "h2#2"},
+        {"uuid": "1519ab13-536d-4107-b5d3-c5b18d76c346", "templateName": "Bullet List", "nodeKey": "list#2"}
+      ]
+    },
+    "pages/04-brewing-methods.md": {
+      "sectionId": "44b85ddf-a3d5-4279-8df8-de7d7f907b46",
+      "blobSha": "e300389fdef8743e2bd91cc76fc828f9800acb3d",
+      "blocks": [
+        {"uuid": "67371164-16c2-4505-9329-d0c4d46a630e", "templateName": "Heading 1 with Caption", "nodeKey": "h1#0"},
+        {"uuid": "7c172ce3-3a1e-4d6c-82e4-671906bcf936", "templateName": "Image with Caption", "nodeKey": "image#0"},
+        {"uuid": "5c961041-9d2b-44f6-8d7b-81d71ed482fe", "templateName": "Heading 2", "nodeKey": "h2#0"},
+        {"uuid": "21618b58-aa37-46d8-917c-7ed556780619", "templateName": "Text", "nodeKey": "p#0"},
+        {"uuid": "76408550-f350-4ba7-b1e5-da93a5a9d88e", "templateName": "Numbered List", "nodeKey": "list#0"},
+        {"uuid": "8d4185ae-cd6c-4fba-9d90-eae7ab631ae1", "templateName": "Heading 2 with Caption", "nodeKey": "h2#1"},
+        {"uuid": "ae73eee0-f6b1-4b48-a12d-ba975f9d1fdf", "templateName": "Numbered List", "nodeKey": "list#1"},
+        {"uuid": "c3f69125-7045-4d1b-bf88-fc5154328bbd", "templateName": "Heading 2 with Divider", "nodeKey": "h2#2"},
+        {"uuid": "4dbc557b-f9f1-40ab-ad24-21176795ec3e", "templateName": "Text", "nodeKey": "p#1"},
+        {"uuid": "aa377999-2a39-467c-88ae-f42014d5c6d1", "templateName": "Heading 2 with Icon", "nodeKey": "h2#3"},
+        {"uuid": "b5e7070a-7dda-4220-acc1-9da70dbe00b8", "templateName": "Text", "nodeKey": "p#2"}
+      ]
+    },
+    "pages/05-tasting-and-improving.md": {
+      "sectionId": "ac1cb221-8f67-4ec9-8f3f-abb47d9d7b1c",
+      "blobSha": "840d8a61ece15679ce6aaccbf536b957f0a032a4",
+      "blocks": [
+        {"uuid": "cba592b9-f30d-4105-8969-079d020cf941", "templateName": "Heading 1 with Caption", "nodeKey": "h1#0"},
+        {"uuid": "2672773b-677b-4819-a911-6ed0f1bf0d91", "templateName": "Image with Caption", "nodeKey": "image#0"},
+        {"uuid": "b33528d6-2e14-459e-afe2-e3d58265aff5", "templateName": "Heading 2", "nodeKey": "h2#0"},
+        {"uuid": "fee983a0-5655-41d2-9c53-08a3894c4f53", "templateName": "Numbered List", "nodeKey": "list#0"},
+        {"uuid": "9771d736-e228-4c18-82f9-5fcd0dcf3909", "templateName": "Heading 2 with Caption", "nodeKey": "h2#1"},
+        {"uuid": "95557531-721d-4b52-b64d-777285bea5cd", "templateName": "Bullet List", "nodeKey": "list#1"},
+        {"uuid": "02478dfe-1853-486b-a1fd-a6b8f72ab28f", "templateName": "Heading 2 with Divider", "nodeKey": "h2#2"},
+        {"uuid": "145bd14e-7036-4680-aace-f72ea10d74fc", "templateName": "Bullet List", "nodeKey": "list#2"},
+        {"uuid": "e12b97b9-ff88-48ac-b378-bbac12633dea", "templateName": "Text", "nodeKey": "p#0"},
+        {"uuid": "7d20ea55-a265-4756-ae40-9f153ba83906", "templateName": "Footer 1", "nodeKey": "footer#0"}
+      ]
+    }
+  },
+  "assets": {
+    "assets/01-welcome.png": {
+      "fileMetaId": "00077434-1dfc-4c3e-936d-d841b10dc7da",
+      "blobSha": "ccc6c7317db01edfed3be6701670d6ea6f4ee64f",
+      "size": 23733
+    },
+    "assets/02-beans-and-grind.png": {
+      "fileMetaId": "5fb31f39-7d10-43aa-9867-abd8fc2aa969",
+      "blobSha": "f27ab8258d7611ad525e7c22706a9d986b60cb1a",
+      "size": 19409
+    },
+    "assets/03-water-and-ratios.png": {
+      "fileMetaId": "6ad50acc-d43e-470e-8fc4-e9e99138015b",
+      "blobSha": "d9a506124db590b825a26a83b005a209abfec77f",
+      "size": 18664
+    },
+    "assets/04-brewing-methods.png": {
+      "fileMetaId": "5de3cd37-57bd-4920-a774-90becb40d92b",
+      "blobSha": "1ca02e8d9179b4105f5bb7e08f1d91f849dcd282",
+      "size": 17531
+    },
+    "assets/05-tasting-and-improving.png": {
+      "fileMetaId": "637abd90-2378-4b21-9ea8-76ff48cc9c68",
+      "blobSha": "548c2d8c32e69eafc7387cc53453b729c21933dc",
+      "size": 17316
+    }
+  }
+}

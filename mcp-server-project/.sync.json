@@ -1,6 +1,6 @@
 {
-  "lastSyncedAt": "2026-05-08T12:00:00.000Z",
-  "projectJsonBlobSha": "0be03536f45fbf3feb4e5baa3399bf9b3321a264",
+  "lastSyncedAt": "2026-05-08T14:30:12.000Z",
+  "projectJsonBlobSha": "c24e7a257449a7b3b99edef749f625bdae5fd845",
   "remote": {
     "companyId": "dcf0a9e3-c4c9-4a2f-883d-75672e6399dc",
     "projectId": "fc85af5e-81f2-4ae0-a7a7-6fcc253d311a"
@@ -32,21 +32,6 @@
         { "uuid": "54fedf22-4dd0-4898-a5e1-2cd76bb505c6", "templateName": "Cover 4", "nodeKey": "cover#0" }
       ]
     },
-    "pages/02-what-is-mcp.md": {
-      "sectionId": "765b43a8-1db4-4445-9884-4d9200bfc2cc",
-      "blobSha": "553041efdd8e345171786ec70a0a0a1e8ba1ff9f",
-      "blocks": [
-        { "uuid": "3bcec31b-24ab-4dc7-83fc-2b44519cf917", "templateName": "Heading 1 with Caption", "nodeKey": "h1#0" },
-        { "uuid": "404c2ff9-a452-4ce1-b4b5-109c065a5501", "templateName": "Image with Caption", "nodeKey": "image#0" },
-        { "uuid": "be05645c-7448-4526-a241-7a26760cf331", "templateName": "Heading 2", "nodeKey": "h2#0" },
-        { "uuid": "4fa18bc4-e669-4a92-8573-bf170ca56875", "templateName": "Text", "nodeKey": "p#0" },
-        { "uuid": "7e7c65d3-9a92-402d-9560-00b9990212a8", "templateName": "Heading 2 with Caption", "nodeKey": "h2#1" },
-        { "uuid": "e8d0bde4-07d0-430f-9770-83c2f544983a", "templateName": "Text", "nodeKey": "p#1" },
-        { "uuid": "1e930112-d24a-4452-9316-3506c5081168", "templateName": "Heading 2 with Divider", "nodeKey": "h2#2" },
-        { "uuid": "52d84f0a-d9ad-4631-a3b0-d54bf6d6ed46", "templateName": "Bullet List", "nodeKey": "ul#0" },
-        { "uuid": "5137ec3e-80ab-489a-8c41-80866da924be", "templateName": "Text", "nodeKey": "p#2" }
-      ]
-    },
     "pages/03-server-lifecycle.md": {
       "sectionId": "fb4be9ae-3f24-47b5-a66d-9f28d64edebf",
       "blobSha": "83d9433921ead861c59adae9d98cd05707220b62",
@@ -63,6 +48,21 @@
         { "uuid": "98d509ad-b5a1-42f4-b88d-f5e2cac62f17", "templateName": "Text", "nodeKey": "p#3" },
         { "uuid": "ac41ddc3-2074-45c3-acb9-590467802b47", "templateName": "Heading 2 with Caption", "nodeKey": "h2#4" },
         { "uuid": "b2b6a7e8-3c64-4c8e-967d-9631424952ba", "templateName": "Text", "nodeKey": "p#4" }
+      ]
+    },
+    "pages/02-what-is-mcp.md": {
+      "sectionId": "765b43a8-1db4-4445-9884-4d9200bfc2cc",
+      "blobSha": "553041efdd8e345171786ec70a0a0a1e8ba1ff9f",
+      "blocks": [
+        { "uuid": "3bcec31b-24ab-4dc7-83fc-2b44519cf917", "templateName": "Heading 1 with Caption", "nodeKey": "h1#0" },
+        { "uuid": "404c2ff9-a452-4ce1-b4b5-109c065a5501", "templateName": "Image with Caption", "nodeKey": "image#0" },
+        { "uuid": "be05645c-7448-4526-a241-7a26760cf331", "templateName": "Heading 2", "nodeKey": "h2#0" },
+        { "uuid": "4fa18bc4-e669-4a92-8573-bf170ca56875", "templateName": "Text", "nodeKey": "p#0" },
+        { "uuid": "7e7c65d3-9a92-402d-9560-00b9990212a8", "templateName": "Heading 2 with Caption", "nodeKey": "h2#1" },
+        { "uuid": "e8d0bde4-07d0-430f-9770-83c2f544983a", "templateName": "Text", "nodeKey": "p#1" },
+        { "uuid": "1e930112-d24a-4452-9316-3506c5081168", "templateName": "Heading 2 with Divider", "nodeKey": "h2#2" },
+        { "uuid": "52d84f0a-d9ad-4631-a3b0-d54bf6d6ed46", "templateName": "Bullet List", "nodeKey": "ul#0" },
+        { "uuid": "5137ec3e-80ab-489a-8c41-80866da924be", "templateName": "Text", "nodeKey": "p#2" }
       ]
     },
     "pages/04-project-setup.md": {

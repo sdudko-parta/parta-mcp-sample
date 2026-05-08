@@ -22,6 +22,7 @@ If the user invokes the skill against a different repo, ask once at the start of
 /parta-sync mcp-server-project
 /parta-sync productive-work-with-ai-agents
 /parta-sync sample-project-1
+/parta-sync coffee-brewing-basics
 ```
 
 If invoked without an argument, ask the user which directory to sync. Only directories that contain a `project.json` at the repo root are valid.

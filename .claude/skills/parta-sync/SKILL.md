@@ -28,6 +28,20 @@ If invoked without an argument, ask the user which directory to sync. Only direc
 
 For scheduled runs the same command is used. The scheduler does not need a working directory and must not run `git pull` or any other shell setup — every read and write goes through MCPs.
 
+## Branching, PR, and merge
+
+Every change the skill produces lands on a per-run feature branch — it never writes directly to `main`. The skill owns the full branch → PR → merge lifecycle. Callers (interactive `/parta-sync`, scheduled routines) just invoke the skill; they do not pre-create branches or open PRs themselves.
+
+Lifecycle:
+
+1. **Reads always come from `main`.** `project.json`, `pages/*.md`, the `assets` listing, `.sync.json`, and the `upload_file_from_url` raw URLs all reference `main`. The branch is a write target only.
+2. **Lazy branch creation.** Do **not** create the branch up front. Only create it once §0's manifest check has decided that something actually needs to change — i.e., right before §10 is about to commit the new `.sync.json`. If §0 short-circuits, no branch is created and no PR is opened. This keeps cron runs that produce no diff completely silent on the GitHub side.
+3. **Branch name.** `claude/parta-sync-<dir>-<UTC-YYYYMMDD-HHMMSS>` (UTC seconds resolution prevents collisions across rapid consecutive runs). Created via `create_branch(owner=sdudko-parta, repo=parta-mcp-sample, branch=<name>, from_branch=main)`. A `403` here is the write-auth canary — abort with a clear "GitHub MCP write not authorized — reconnect the integration" message before any further calls.
+4. **All writes target the branch.** Every `create_or_update_file` and `delete_file` the skill issues passes `branch=<name>`. This includes the `.sync.json` commit in §10. The skill never calls `create_or_update_file` against `main`.
+5. **PR + merge at the end.** After §10 succeeds, call `create_pull_request(owner=sdudko-parta, repo=parta-mcp-sample, head=<branch>, base=main, title="parta-sync: <dir>", body=<the per-project summary block from "Output">)`, then immediately `merge_pull_request(pull_number=<n>, merge_method="squash")`. Do not wait for review — this is a policy mandate (see CLAUDE.md "Git workflow"). Capture the PR URL and merge SHA for the summary.
+6. **On failure.** If anything between §0.5 and §10 fails, leave the branch in place for inspection — do **not** open a PR, and do **not** attempt to delete the branch (the GitHub MCP exposes no `delete_branch`/`delete_ref` tool, and a half-merged branch deleted from underneath would lose forensic data anyway). The next run starts a fresh branch with a different timestamp, so there is no collision.
+7. **Idempotency contract is preserved.** `.sync.json` only lands on `main` after the merge, so a failure mid-run leaves `main` exactly as it was — the next run sees the same starting state and retries from scratch. This is the same invariant the skill had before branching was introduced; the branch is invisible to it.
+
 ## Inputs (read via GitHub MCP)
 
 | Path                  | How to read                                                          | Role                                                                                                                                  |
@@ -40,9 +54,11 @@ For scheduled runs the same command is used. The scheduler does not need a worki
 
 The git blob `sha` returned by GitHub for each file is content-addressed and stable — use it directly as the change-detection key. Don't compute sha256 yourself; you have no local file to hash.
 
+Every read above omits the `ref` parameter and therefore resolves against `main`. The skill never reads from a feature branch; the working branch is a write target only.
+
 ## State persisted (written via GitHub MCP)
 
-After a successful sync, write `<dir>/.sync.json` to the **course repo** (`sdudko-parta/parta-mcp-sample`) via `create_or_update_file`. Commit message: `parta-sync state: <dir>`.
+After a successful sync, write `<dir>/.sync.json` to the **course repo** (`sdudko-parta/parta-mcp-sample`) via `create_or_update_file(branch=<working branch>)` (see "Branching, PR, and merge" — the working branch is created lazily in §10). Commit message: `parta-sync state: <dir>`. Once §11 merges the PR, `.sync.json` lands on `main` and becomes visible to the next run's §0 manifest check.
 
 ```jsonc
 {
@@ -264,19 +280,35 @@ For each planned block:
 
 Only on full success — i.e., §7 finished without leaving any block pointing at a stale `fileMetaId`.
 
-1. For each id in `replacedFileMetaIds` (collected in §5), call `delete_file(fileMetaId=<old>)` **in parallel**. A failure here is logged but does not abort the run — by this point all blocks already point at the new asset, so the orphan is harmless. **Order matters:** never delete before §7 completes; otherwise a transient block would reference a missing file.
-2. Build the new `<dir>/.sync.json` payload. `projectJsonBlobSha` is the blob `sha` captured in §0 — `project.json` is never modified by the skill, so this value is always the one that was just read.
-3. Write `<dir>/.sync.json` via `create_or_update_file`. On a fresh sync (no prior `.sync.json` blob `sha`) omit the `sha` parameter; otherwise pass the `sha` captured in §0. Commit message: `parta-sync state: <dir>`.
+1. **Create the working branch** (lazy, see "Branching, PR, and merge" above). `create_branch(owner=sdudko-parta, repo=parta-mcp-sample, branch=claude/parta-sync-<dir>-<UTC-YYYYMMDD-HHMMSS>, from_branch=main)`. This is the first GitHub write of the run; a `403` here aborts with the write-auth message and no Parta state is persisted. Hold the branch name for the next two steps and §11.
+2. For each id in `replacedFileMetaIds` (collected in §5), call the **Parta MCP** `delete_file(fileMetaId=<old>)` (note: this is the Parta tool, not the GitHub one) **in parallel**. A failure here is logged but does not abort the run — by this point all blocks already point at the new asset, so the orphan is harmless. **Order matters:** never delete before §7 completes; otherwise a transient block would reference a missing file.
+3. Build the new `<dir>/.sync.json` payload. `projectJsonBlobSha` is the blob `sha` captured in §0 — `project.json` is never modified by the skill, so this value is always the one that was just read.
+4. Write `<dir>/.sync.json` via `create_or_update_file(branch=<working branch>)`. On a fresh sync (no prior `.sync.json` blob `sha`) omit the `sha` parameter; otherwise pass the `sha` captured in §0 (the blob lives on `main` — that is what we're branching from, so it is the correct base sha for the create-or-update against the new branch). Commit message: `parta-sync state: <dir>`.
 
-Exactly one commit per course on every run, fresh or steady state.
+Exactly one commit per course on every run that reached §10, on the working branch.
+
+### 11. Open the PR and merge
+
+Immediately after §10's commit succeeds, in two sequential calls:
+
+1. `create_pull_request(owner=sdudko-parta, repo=parta-mcp-sample, head=<working branch>, base=main, title="parta-sync: <dir>", body=<the summary block from "Output", including project URL and counters>)`. Capture the returned `number` and `html_url`.
+2. `merge_pull_request(owner=sdudko-parta, repo=parta-mcp-sample, pull_number=<number>, merge_method="squash", commit_title="parta-sync: <dir>")`. Capture the merge `sha`.
+
+No user confirmation. No waiting. This is the policy mandated by CLAUDE.md and the routine instruction; the skill executes it on every successful run.
+
+If `create_pull_request` fails, log it and stop — the branch is on the remote and can be inspected. Do not retry blindly; common cause is a transient GitHub error and the next scheduled run will create a fresh branch.
+
+If `merge_pull_request` fails (e.g., branch protection enforced), log the PR URL and stop. The branch and PR remain for the user to merge by hand. The next run still starts from `main` and retries idempotently — the unmerged PR will simply look stale and can be closed.
 
 ## Error handling
 
 - Any MCP call fails → stop, report which step failed, do **not** persist `.sync.json`. The next run sees the same starting state and retries idempotently.
-- Asset upload fails (`upload_file_from_url` non-2xx) → stop, name the asset, exit.
+- `create_branch` returns `403` → GitHub MCP write auth is broken (read-only token). Abort with that exact message before any Parta calls; the user must reconnect the GitHub MCP integration.
+- Asset upload fails (`upload_file_from_url` non-2xx) → stop, name the asset, exit. No branch was created yet (asset upload runs in §5, branch creation is §10.1) so there is nothing to clean up on the GitHub side.
 - `bankContentItems` validation fails on one item → log the offending key, skip that block, continue the batch. Re-running after a fix is safe.
-- The user interrupts mid-run → operations applied to Parta so far are durable; `.sync.json` was not committed, so the next run resumes from a consistent state.
-- A `create_or_update_file` 409 on `.sync.json` (someone else committed in between) → re-fetch the file's `sha` from the course repo, rebuild the payload from current Parta state, retry once. If it still 409s, report and stop.
+- The user interrupts mid-run → operations applied to Parta so far are durable; if the branch was created, leave it. The next run starts a fresh branch and retries from a consistent state since `.sync.json` on `main` is unchanged.
+- A `create_or_update_file` 409 on `.sync.json` (race against another writer) → re-fetch the blob `sha` from `main` (the base, not the branch — the branch was just created from `main` so they match), rebuild the payload from current Parta state, retry once. If it still 409s, report and stop.
+- `create_pull_request` or `merge_pull_request` fails → the branch is preserved on the remote with the state commit on it. Print the branch name and (if available) the PR URL, then stop. Do not delete the branch (the GitHub MCP cannot, and a human can salvage by merging manually). The next run starts a fresh branch and retries.
 
 ## Output
 
@@ -292,12 +324,14 @@ Sync productive-work-with-ai-agents → Parta
   +  4 assets uploaded
   ~  1 asset re-uploaded (1 old fileMetaId deleted, 3 blocks rebound)
   unreferenced server assets: 2 (fm_…, fm_…)
-  state commit: <sha>
+  branch: claude/parta-sync-productive-work-with-ai-agents-20260508T143012Z
+  state commit: <branch-sha>
+  PR: #<n> <html_url> (merged as <merge-sha>)
 ```
 
 Always include the project URL via `get_project_link`.
 
-When §0 short-circuits (manifest match, no Parta calls made), still print the same block — just with all counters at zero and a `manifest match — no Parta calls` line in place of `state commit`. This keeps cron logs readable without misleading anyone into thinking the run was skipped entirely.
+When §0 short-circuits (manifest match, no Parta calls made), no branch is created and no PR is opened. Still print the same block — just with all counters at zero, no `branch` / `PR` lines, and a `manifest match — no Parta calls, no branch` line in place of `state commit`. This keeps cron logs readable without misleading anyone into thinking the run was skipped entirely.
 
 ## What NOT to do
 
@@ -305,9 +339,12 @@ When §0 short-circuits (manifest match, no Parta calls made), still print the s
 - Do not edit `.sync.json` by hand.
 - Do not push raw image URLs (`raw.githubusercontent.com/...`) into block content. Always go through `fileMetaId`.
 - Do not assume any local working tree, `npm install`, or `git pull`. Everything is MCP-only.
+- Do not write directly to `main` — every `create_or_update_file` and `delete_file` call must specify the working `branch=…`. The skill is the only thing that should ever push commits in the parta-sync workflow, and it always pushes to a feature branch.
+- Do not skip the PR + merge step on success. The merge is the contract: it is what makes `.sync.json` on `main` reflect Parta state for the next run's manifest check.
+- Do not pre-create the branch in §0. Lazy creation is what keeps the no-op cron path silent on GitHub.
 - Do not implement the reverse direction (Parta → markdown). Out of scope.
 
 ## Future hooks (not for v1)
 
 - **Bidirectional sync** — pull from Parta into markdown with conflict resolution.
-- **Multiple repos / multiple branches** — current skill is hard-bound to `sdudko-parta/parta-mcp-sample` `main`. Parametrize when needed.
+- **Multiple repos / multiple base branches** — current skill is hard-bound to `sdudko-parta/parta-mcp-sample` and reads/PRs against `main`. The per-run write branch is generated; only the read base is fixed. Parametrize the read base if a non-`main` workflow becomes a requirement.

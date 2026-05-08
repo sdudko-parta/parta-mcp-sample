@@ -1,0 +1,225 @@
+{
+  "lastSyncedAt": "2026-05-08T12:00:00.000Z",
+  "projectJsonBlobSha": "531c5828e7f8ccca44f73262353947c5f3b6eccf",
+  "remote": {
+    "companyId": "dcf0a9e3-c4c9-4a2f-883d-75672e6399dc",
+    "projectId": "f7d2d1fd-5a04-46fe-b17f-f240c54ef390"
+  },
+  "templateGroup": {
+    "id": "bb96540a-ae08-4a04-8bef-61505cf742f4",
+    "name": "Parta Quick-Start Collection"
+  },
+  "templates": {
+    "Cover 4": "6ee964fe-44c4-43eb-b853-013dd495fb6a",
+    "Heading 1 with Caption": "de4aa646-9452-42e8-b1d3-0dd124eab6e7",
+    "Heading 2": "529ae6e5-a9b1-4a6a-b53a-104b7d578bbd",
+    "Heading 2 with Caption": "04aad22f-341a-4f28-9940-1130530afe72",
+    "Heading 2 with Divider": "0d09af1b-d447-4a04-b336-788c41bc26af",
+    "Image with Caption": "b7797917-a2af-4635-a142-1f4a76d6b2fa",
+    "Text": "99784d9d-bdab-4200-ad89-01dfadfcbc41",
+    "Bullet List": "1a7e35b9-3550-4451-950d-c2141955ddf2",
+    "Numbered List": "8e391859-008d-47c6-b755-24ac2356448e",
+    "Code Snippet": "0b9049d9-e23e-46c4-a6b2-646ca57a0a00",
+    "Statement 1": "c0143950-9eae-4b71-a141-cfb72fe567c7",
+    "Footer 1": "aa663baa-466f-4dc9-90d6-4cd06c00258b",
+    "Line Divider": "d4a9f325-5692-4e2b-a002-6fbc60c142f0"
+  },
+  "pages": {
+    "pages/01-welcome.md": {
+      "sectionId": "5b02af37-3dbb-4e4c-94a1-4d449dba8c61",
+      "blobSha": "a0c97a4af9e5a8818d7c98c21599bad6cd68ff42",
+      "blocks": [
+        { "uuid": "aeb5db56-90cb-4c8e-93d4-973a6ea497e2", "templateName": "Cover 4", "nodeKey": "cover#0" }
+      ]
+    },
+    "pages/02-what-is-an-agent.md": {
+      "sectionId": "8bc78514-38f8-41c3-94c2-a77fc0856695",
+      "blobSha": "4b216748bd04b273c2745dd10d05dd32f70dcc66",
+      "blocks": [
+        { "uuid": "e7d9beb4-3464-45a5-9f84-2017e9e559f7", "templateName": "Heading 1 with Caption", "nodeKey": "h1#0" },
+        { "uuid": "02547736-2fa1-4673-b9f5-5f7aba12411f", "templateName": "Image with Caption", "nodeKey": "image#0" },
+        { "uuid": "1dd2d552-9b3e-4b3a-86e9-510ee39751c9", "templateName": "Heading 2 with Caption", "nodeKey": "h2#0" },
+        { "uuid": "60580fc0-d3f4-48a2-85c1-9be9699f32c5", "templateName": "Heading 2", "nodeKey": "h2#1" },
+        { "uuid": "ca3b3e3d-8ac8-43e4-9aec-26c430df0cd3", "templateName": "Code Snippet", "nodeKey": "code#0" },
+        { "uuid": "eed92756-4748-4125-9886-14f36a13a75e", "templateName": "Text", "nodeKey": "p#0" },
+        { "uuid": "4a658c5b-962a-4647-b4f9-8ebe6f7786de", "templateName": "Heading 2 with Caption", "nodeKey": "h2#2" }
+      ]
+    },
+    "pages/03-goals-constraints.md": {
+      "sectionId": "e5746bd8-f11e-4874-8dfb-1b3b35bece1b",
+      "blobSha": "ccde3db56f2f10d6304f243331188f632bf49af3",
+      "blocks": [
+        { "uuid": "8374f856-215d-4f95-a68d-96537e7eee47", "templateName": "Heading 1 with Caption", "nodeKey": "h1#0" },
+        { "uuid": "606c1a27-f209-42d0-b3eb-aac8f0065472", "templateName": "Image with Caption", "nodeKey": "image#0" },
+        { "uuid": "c9e97ca4-cb94-4de1-98f6-8b336fd42df2", "templateName": "Heading 2", "nodeKey": "h2#0" },
+        { "uuid": "d197931a-6f84-42f0-b150-6dea23074330", "templateName": "Statement 1", "nodeKey": "p#0" },
+        { "uuid": "63823bc1-3522-4653-b5d8-e3aeec8a3494", "templateName": "Heading 2 with Caption", "nodeKey": "h2#1" },
+        { "uuid": "abe3faca-aee6-42c4-91f6-1d6a0e222dfe", "templateName": "Bullet List", "nodeKey": "ul#0" },
+        { "uuid": "79574808-3cb9-4df9-be66-cb1aec9974d6", "templateName": "Heading 2 with Divider", "nodeKey": "h2#2" },
+        { "uuid": "7a0e72a1-1d54-4b00-9028-21135da2d83e", "templateName": "Text", "nodeKey": "p#1" }
+      ]
+    },
+    "pages/04-choose-the-model.md": {
+      "sectionId": "6da6c70f-8b9f-4b24-ada0-b0e0ebfe59e7",
+      "blobSha": "9702b68de729126a5599823d571a202458e3c6d1",
+      "blocks": [
+        { "uuid": "1f60cbaf-3ccc-4380-96dc-c2679d7deabc", "templateName": "Heading 1 with Caption", "nodeKey": "h1#0" },
+        { "uuid": "d220398f-4c94-4fb9-a083-876499065e41", "templateName": "Image with Caption", "nodeKey": "image#0" },
+        { "uuid": "64fa8c6c-ec73-46cc-b729-9aeb30557801", "templateName": "Heading 2", "nodeKey": "h2#0" },
+        { "uuid": "fb3fdf8e-1586-424b-9067-7c5d46eab020", "templateName": "Numbered List", "nodeKey": "ol#0" },
+        { "uuid": "154ff5aa-067f-4b1b-ba05-e13bb44a4fb9", "templateName": "Heading 2 with Caption", "nodeKey": "h2#1" },
+        { "uuid": "0360433c-73d0-4419-b16b-a7a06e3bc23f", "templateName": "Bullet List", "nodeKey": "ul#0" },
+        { "uuid": "ce85b64d-a8b3-4d28-a102-ce701eb5110e", "templateName": "Heading 2 with Caption", "nodeKey": "h2#2" }
+      ]
+    },
+    "pages/05-tool-use.md": {
+      "sectionId": "229a3106-49df-4cf4-bd63-7e3ca4296433",
+      "blobSha": "089f1540c24aa6106760f988a69c037726d357a2",
+      "blocks": [
+        { "uuid": "e6547111-f234-406c-9eff-7a34e165e3d4", "templateName": "Heading 1 with Caption", "nodeKey": "h1#0" },
+        { "uuid": "5f90a455-b48d-405e-b419-6210c355f5b5", "templateName": "Image with Caption", "nodeKey": "image#0" },
+        { "uuid": "0d70afba-a312-4ca0-900e-26d3d623da7f", "templateName": "Heading 2 with Caption", "nodeKey": "h2#0" },
+        { "uuid": "7d81ced8-218a-4c62-80cf-cccf4f3e64a8", "templateName": "Code Snippet", "nodeKey": "code#0" },
+        { "uuid": "9b7a96e2-9ec8-4ec2-abb5-cb10fc72a5f9", "templateName": "Heading 2 with Caption", "nodeKey": "h2#1" },
+        { "uuid": "aaf98f88-19b3-4b21-8589-f2e950d9683b", "templateName": "Bullet List", "nodeKey": "ul#0" },
+        { "uuid": "4c1dc589-9a82-417a-a4c4-b8f8016e3b67", "templateName": "Heading 2 with Divider", "nodeKey": "h2#2" },
+        { "uuid": "84bbf9f6-fc15-4f18-b59a-22b8842c607e", "templateName": "Bullet List", "nodeKey": "ul#1" }
+      ]
+    },
+    "pages/06-prompt-design.md": {
+      "sectionId": "517395ac-0693-404d-bcc7-3314b84ae967",
+      "blobSha": "e2e9c7278d5ad487db17b70658896d3ea8a16c4c",
+      "blocks": [
+        { "uuid": "1abeef9a-f0a6-40b0-81ab-628c2a2eb707", "templateName": "Heading 1 with Caption", "nodeKey": "h1#0" },
+        { "uuid": "efaecf02-5d76-4177-90b5-36ad21e2a21f", "templateName": "Image with Caption", "nodeKey": "image#0" },
+        { "uuid": "061ee6ef-43b1-4b3c-9f67-a725a7730494", "templateName": "Heading 2", "nodeKey": "h2#0" },
+        { "uuid": "832e58d2-4a05-4cd4-8112-d89549de8b9f", "templateName": "Numbered List", "nodeKey": "ol#0" },
+        { "uuid": "8e932e7e-fd77-48c7-92fb-ddf2aa110f95", "templateName": "Heading 2 with Caption", "nodeKey": "h2#1" },
+        { "uuid": "a506ce5e-4c48-4d61-8a8a-326b36ed2057", "templateName": "Code Snippet", "nodeKey": "code#0" },
+        { "uuid": "496c50ea-4b59-43aa-a5e0-4715ff8806f4", "templateName": "Text", "nodeKey": "p#0" },
+        { "uuid": "04e9d92e-c799-4fa2-b732-5fcd64977f11", "templateName": "Code Snippet", "nodeKey": "code#1" },
+        { "uuid": "51a56415-9d2d-4141-9eee-07cd8b422c2e", "templateName": "Text", "nodeKey": "p#1" },
+        { "uuid": "c629167b-5905-4524-9ed8-a573fa86eb8b", "templateName": "Heading 2 with Divider", "nodeKey": "h2#2" },
+        { "uuid": "679530ed-dbe5-44a5-95da-49003bba1f25", "templateName": "Bullet List", "nodeKey": "ul#0" },
+        { "uuid": "e04e960e-d63b-4a52-8cae-f5455d91669d", "templateName": "Heading 2 with Caption", "nodeKey": "h2#3" }
+      ]
+    },
+    "pages/07-errors-retries.md": {
+      "sectionId": "eaeb5dea-2b8f-451c-b9d1-5a8c57c176ef",
+      "blobSha": "e4c27bd18a0191821d57268426418ac2a29b4695",
+      "blocks": [
+        { "uuid": "9f847697-b2ab-42b9-8d59-0da1619c75b8", "templateName": "Heading 1 with Caption", "nodeKey": "h1#0" },
+        { "uuid": "5bbb0607-d081-4495-b442-1ef3eaf8ac33", "templateName": "Image with Caption", "nodeKey": "image#0" },
+        { "uuid": "cde8d890-df67-498d-ba33-9904c56dd88a", "templateName": "Heading 2", "nodeKey": "h2#0" },
+        { "uuid": "0f465dce-4a4e-46a4-8e6c-54628fc16658", "templateName": "Numbered List", "nodeKey": "ol#0" },
+        { "uuid": "1a834465-a304-4997-8d2a-b57e8d26b206", "templateName": "Heading 2 with Caption", "nodeKey": "h2#1" },
+        { "uuid": "341ce16c-ebf1-43dd-8b57-90d2ce5d2fc9", "templateName": "Heading 2 with Divider", "nodeKey": "h2#2" },
+        { "uuid": "f32da61a-c367-4e6d-aeb7-0b78b7ddd75c", "templateName": "Text", "nodeKey": "p#0" },
+        { "uuid": "275d5016-ebb6-4f6e-a496-dfbf222281f4", "templateName": "Numbered List", "nodeKey": "ol#1" },
+        { "uuid": "392d4df0-94d2-42b9-8574-06e6d7ca476e", "templateName": "Text", "nodeKey": "p#1" },
+        { "uuid": "23b9c161-90fc-40aa-ba86-03ac56ef681d", "templateName": "Heading 2", "nodeKey": "h2#3" },
+        { "uuid": "24d6f5c0-ee6c-49e7-ba23-efe389a70dcf", "templateName": "Text", "nodeKey": "p#2" }
+      ]
+    },
+    "pages/08-memory-context.md": {
+      "sectionId": "f9a0bb16-f554-4bfc-ab55-bf380bd29f59",
+      "blobSha": "b7f1d115f84261d3999e84bda6d1541bf2f10745",
+      "blocks": [
+        { "uuid": "7ab679f8-9e63-4a05-b814-6efdc01fe0c1", "templateName": "Heading 1 with Caption", "nodeKey": "h1#0" },
+        { "uuid": "1e3e6a38-406b-4caf-b2e2-b017ef7321b4", "templateName": "Image with Caption", "nodeKey": "image#0" },
+        { "uuid": "8c43b1c4-92c6-41ff-9d03-6a44483fabab", "templateName": "Heading 2", "nodeKey": "h2#0" },
+        { "uuid": "3a3e5906-7d36-412a-a024-46f6be858577", "templateName": "Numbered List", "nodeKey": "ol#0" },
+        { "uuid": "986dce3d-ff47-4437-be83-b86ae4e29b58", "templateName": "Heading 2 with Caption", "nodeKey": "h2#1" },
+        { "uuid": "6712216e-3610-43f0-9f67-72263d6c98e5", "templateName": "Bullet List", "nodeKey": "ul#0" },
+        { "uuid": "b45a1d6f-1b92-4787-908d-e1c867ef7eae", "templateName": "Heading 2 with Divider", "nodeKey": "h2#2" },
+        { "uuid": "6c4eed5f-b8d8-4418-9e8c-3b6b1546359b", "templateName": "Bullet List", "nodeKey": "ul#1" },
+        { "uuid": "0716a114-3e90-4288-9763-980eeed09d13", "templateName": "Heading 2 with Caption", "nodeKey": "h2#3" }
+      ]
+    },
+    "pages/09-evaluation.md": {
+      "sectionId": "e1fc248c-998a-426f-bfb8-72ae6d01ec48",
+      "blobSha": "fac8d09eceb20a9697fff2d618891960cd73d4fa",
+      "blocks": [
+        { "uuid": "72cac83f-f114-4a27-b00b-42bb49a2564c", "templateName": "Heading 1 with Caption", "nodeKey": "h1#0" },
+        { "uuid": "8245cbbd-45fb-4d13-8ebf-58c9f74b9013", "templateName": "Image with Caption", "nodeKey": "image#0" },
+        { "uuid": "19b23274-ff0c-43b4-b08e-9629c84d19d7", "templateName": "Heading 2", "nodeKey": "h2#0" },
+        { "uuid": "2fe7b193-31f7-4b70-822a-41ae28a56b9c", "templateName": "Numbered List", "nodeKey": "ol#0" },
+        { "uuid": "6ad1676a-3fe0-48b2-abc1-933eccf25d11", "templateName": "Heading 2 with Caption", "nodeKey": "h2#1" },
+        { "uuid": "6d71154d-9fd3-49ba-bbb7-d16201447f36", "templateName": "Heading 2 with Divider", "nodeKey": "h2#2" },
+        { "uuid": "284dc102-50a1-4670-bb25-3a3978c178cf", "templateName": "Bullet List", "nodeKey": "ul#0" },
+        { "uuid": "574f5355-33e1-46db-be7a-0db0a2945700", "templateName": "Heading 2 with Caption", "nodeKey": "h2#3" }
+      ]
+    },
+    "pages/10-best-practices.md": {
+      "sectionId": "cbac2e11-4818-4b22-9213-b166bcdb9adb",
+      "blobSha": "9f6206e935ad3b00756e20ef73314a55e27b2057",
+      "blocks": [
+        { "uuid": "71acbab6-cc28-42d5-82f1-2b406098ee6e", "templateName": "Heading 1 with Caption", "nodeKey": "h1#0" },
+        { "uuid": "663eb144-ba2f-4533-bed7-900e35da626d", "templateName": "Image with Caption", "nodeKey": "image#0" },
+        { "uuid": "695a0db7-70b0-464a-bc03-c674d4e1979f", "templateName": "Heading 2", "nodeKey": "h2#0" },
+        { "uuid": "6f729939-520c-42f0-bcce-adb1b3b2dcae", "templateName": "Bullet List", "nodeKey": "ul#0" },
+        { "uuid": "33fa0aa3-e93e-4db6-b39b-8f81e60c2db1", "templateName": "Heading 2 with Caption", "nodeKey": "h2#1" },
+        { "uuid": "c021d419-f0c6-4b0f-9037-1ddc1725fb04", "templateName": "Bullet List", "nodeKey": "ul#1" },
+        { "uuid": "6223b6c0-f0bb-49e8-8f0b-cf529da63815", "templateName": "Heading 2 with Caption", "nodeKey": "h2#2" }
+      ]
+    },
+    "pages/11-working-in-a-team.md": {
+      "sectionId": "6c1450ab-6b70-4c2a-8319-52fe983ab69d",
+      "blobSha": "615039f5c45815afcdd52fbaa0fa86c59863078a",
+      "blocks": [
+        { "uuid": "8fca8d6e-2db8-4127-b1c0-fe9bd81d001c", "templateName": "Heading 1 with Caption", "nodeKey": "h1#0" },
+        { "uuid": "aec76b66-e576-4424-ad03-e2e4eb38a8a6", "templateName": "Image with Caption", "nodeKey": "image#0" },
+        { "uuid": "d252da7e-9a1f-437b-ba0e-7b173a5df136", "templateName": "Heading 2 with Caption", "nodeKey": "h2#0" },
+        { "uuid": "c71adeb0-3531-4653-90f4-77b9d0f8a0f9", "templateName": "Text", "nodeKey": "p#0" },
+        { "uuid": "0e6e2925-ae7b-4a49-81bf-93e8ab26be4c", "templateName": "Bullet List", "nodeKey": "ul#0" },
+        { "uuid": "c5d7fc76-dfc9-41df-96ac-8d2dc3dadfd2", "templateName": "Heading 2 with Caption", "nodeKey": "h2#1" },
+        { "uuid": "950572bd-1998-41f0-93d8-544e1ab28b8d", "templateName": "Bullet List", "nodeKey": "ul#1" },
+        { "uuid": "e99a7b25-61e8-4148-92fa-fc920c340122", "templateName": "Heading 2 with Divider", "nodeKey": "h2#2" },
+        { "uuid": "054d9798-d50a-4880-828e-6608b7e77b72", "templateName": "Text", "nodeKey": "p#1" },
+        { "uuid": "1faed8e8-e0df-433f-a2ca-bca756062016", "templateName": "Bullet List", "nodeKey": "ul#2" },
+        { "uuid": "863e84d2-ddb4-4651-89e9-91cad4c30f13", "templateName": "Heading 2 with Caption", "nodeKey": "h2#3" },
+        { "uuid": "13e60b2c-67d3-4341-a476-2084133b375e", "templateName": "Heading 2 with Caption", "nodeKey": "h2#4" }
+      ]
+    },
+    "pages/12-security-sandboxing.md": {
+      "sectionId": "9b266a4a-fd49-4d03-8d1a-a452f6417200",
+      "blobSha": "9bbadcf09f633f4decbe1585861f3d399248ddea",
+      "blocks": [
+        { "uuid": "da016a84-f162-45b6-a6dc-b45cd08a7492", "templateName": "Heading 1 with Caption", "nodeKey": "h1#0" },
+        { "uuid": "91788446-b59d-4b60-8da5-97c1163ecbb7", "templateName": "Image with Caption", "nodeKey": "image#0" },
+        { "uuid": "a5d16b70-c042-44df-8f8f-5f0e4f06e6c0", "templateName": "Heading 2", "nodeKey": "h2#0" },
+        { "uuid": "5f63ce8a-422c-4c24-a5b0-4df2efed514c", "templateName": "Text", "nodeKey": "p#0" },
+        { "uuid": "7230a3ca-5eb0-4442-9149-1794074a52dd", "templateName": "Numbered List", "nodeKey": "ol#0" },
+        { "uuid": "2b5015ce-0300-4707-a265-84e345d16d2c", "templateName": "Text", "nodeKey": "p#1" },
+        { "uuid": "83a96714-31ef-4b09-b85e-97beb98b2a94", "templateName": "Heading 2 with Caption", "nodeKey": "h2#1" },
+        { "uuid": "1be0a332-acdb-4d54-9a80-dd59344c4e36", "templateName": "Text", "nodeKey": "p#2" },
+        { "uuid": "2a061764-f467-44e1-b9d9-484291417952", "templateName": "Bullet List", "nodeKey": "ul#0" },
+        { "uuid": "8bc369d5-2b88-4cd3-ae69-c49f8c54f67b", "templateName": "Heading 2 with Divider", "nodeKey": "h2#2" },
+        { "uuid": "cb5983d5-ae6f-427b-854c-88cc7c6c5dd5", "templateName": "Text", "nodeKey": "p#3" },
+        { "uuid": "2a18b2db-216c-4778-9507-67248646b5b9", "templateName": "Numbered List", "nodeKey": "ol#1" },
+        { "uuid": "19fc438b-ba83-4442-8114-70b27771fa2d", "templateName": "Text", "nodeKey": "p#4" },
+        { "uuid": "d60edbee-5430-4729-be5d-f66b28110b07", "templateName": "Bullet List", "nodeKey": "ul#1" },
+        { "uuid": "46c88208-9c05-42b4-9c0e-77a4898252d4", "templateName": "Heading 2", "nodeKey": "h2#3" },
+        { "uuid": "2b57fafa-4ef5-4cf5-8792-704566496048", "templateName": "Text", "nodeKey": "p#5" },
+        { "uuid": "6df445e6-77a8-486a-838a-d5051721c093", "templateName": "Bullet List", "nodeKey": "ul#2" },
+        { "uuid": "a1c03692-1969-419e-a807-5f150a69e801", "templateName": "Heading 2 with Caption", "nodeKey": "h2#4" },
+        { "uuid": "e4a705b3-cd7f-40c2-8548-137ed845f4d9", "templateName": "Text", "nodeKey": "p#6" },
+        { "uuid": "9bf9cfed-dadf-49a5-97ac-02eb37f7f8c9", "templateName": "Footer 1", "nodeKey": "footer#0" }
+      ]
+    }
+  },
+  "assets": {
+    "assets/01-welcome.png": { "fileMetaId": "31bd07ab-1896-43ca-bda2-4eac1f178d3b", "blobSha": "ccc6c7317db01edfed3be6701670d6ea6f4ee64f", "size": 23733 },
+    "assets/02-what-is-an-agent.png": { "fileMetaId": "c83035e6-7e29-45f3-9eb7-7d716ab48a45", "blobSha": "f27ab8258d7611ad525e7c22706a9d986b60cb1a", "size": 19409 },
+    "assets/03-goals-constraints.png": { "fileMetaId": "df738a85-0f20-4951-b531-2f30ed2c6bf9", "blobSha": "d9a506124db590b825a26a83b005a209abfec77f", "size": 18664 },
+    "assets/04-choose-the-model.png": { "fileMetaId": "e8037c07-66e0-4e96-ac02-2a00942640c2", "blobSha": "f0332e208eb24d5132491d6614516ae5d65d6f61", "size": 19261 },
+    "assets/05-tool-use.png": { "fileMetaId": "70cf16f8-6ed4-4e47-8abe-fbe85a434ecb", "blobSha": "1ca02e8d9179b4105f5bb7e08f1d91f849dcd282", "size": 17531 },
+    "assets/06-prompt-design.png": { "fileMetaId": "cc1f492e-f08d-43f1-8339-8d5f109505fb", "blobSha": "c771f4adc532a6a2542913163ab7cfb4b7418f22", "size": 34846 },
+    "assets/07-errors-retries.png": { "fileMetaId": "80749e3d-f582-4469-8df7-76315c66fd81", "blobSha": "48f3ab6df908981726453adc8b58f2c5449dd96c", "size": 16941 },
+    "assets/08-memory-context.png": { "fileMetaId": "9b4e4511-fe88-47b7-bb2a-34699e244550", "blobSha": "b57940ac9dc9a45a73acf413587634585171341b", "size": 19481 },
+    "assets/09-evaluation.png": { "fileMetaId": "48f1a7ec-33a3-4840-89bf-26ca96f58855", "blobSha": "548c2d8c32e69eafc7387cc53453b729c21933dc", "size": 17316 },
+    "assets/10-best-practices.png": { "fileMetaId": "72e63191-1d12-46f2-b942-c2ad98067547", "blobSha": "8036d948d2bd7772a373472c5d1e77d7793fdb05", "size": 17079 },
+    "assets/11-working-in-a-team.png": { "fileMetaId": "91264434-a58a-42be-9960-01dfb416f035", "blobSha": "6d148ac0d9308350b585a8e2195f1c1230031067", "size": 26793 },
+    "assets/12-security-sandboxing.png": { "fileMetaId": "59a0d1c8-d357-4f4e-aa66-83949a73ed26", "blobSha": "fd32529647ccb929e54697fc9cd2303b275faa11", "size": 36922 }
+  }
+}

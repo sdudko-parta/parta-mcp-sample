@@ -39,6 +39,11 @@ This is **not** a code project — there is no build, no tests, no runtime. It's
 - **Parta MCP** for project/section/block CRUD, template discovery, and S3 file uploads. The sync skill is the only thing that should call these directly. It draws block templates from the **Parta Quick-Start Collection** template group.
 - **GitHub MCP** — reads course content and writes `.sync.json` state and `project.json` back to this repo (`sdudko-parta/parta-mcp-sample`). The sync skill is the only thing that should call these.
 
+## Git workflow
+
+- Always develop changes on a feature branch.
+- When changes are ready, **automatically create a PR targeting `main` and merge it yourself** — no user confirmation needed. Do not wait to be asked.
+
 ## When in doubt
 
 Read `.claude/skills/parta-sync/SKILL.md`. It documents the diff algorithm and the exact MCP calls for every kind of change.

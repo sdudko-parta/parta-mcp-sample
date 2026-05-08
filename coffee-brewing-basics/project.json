@@ -1,0 +1,32 @@
+{
+  "$schema": "../schema.json",
+  "name": "Coffee Brewing Basics",
+  "description": "Five-page test course covering the fundamentals of brewing coffee at home — beans, water, methods, and tasting. Used to validate parta-sync handling of multi-page projects with images.",
+  "pages": [
+    {
+      "name": "Welcome",
+      "description": "What this course covers and how to follow along.",
+      "ref": "pages/01-welcome.md"
+    },
+    {
+      "name": "Beans and Grind",
+      "description": "Choosing fresh beans and matching grind size to your method.",
+      "ref": "pages/02-beans-and-grind.md"
+    },
+    {
+      "name": "Water and Ratios",
+      "description": "The ingredient most people overlook, and the dose-to-water math.",
+      "ref": "pages/03-water-and-ratios.md"
+    },
+    {
+      "name": "Brewing Methods",
+      "description": "Pour over, French press, and espresso — when to use each.",
+      "ref": "pages/04-brewing-methods.md"
+    },
+    {
+      "name": "Tasting and Improving",
+      "description": "How to taste deliberately and dial in your next brew.",
+      "ref": "pages/05-tasting-and-improving.md"
+    }
+  ]
+}

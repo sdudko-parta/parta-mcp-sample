@@ -9,14 +9,14 @@
       "ref": "pages/01-welcome.md"
     },
     {
-      "name": "What is the Model Context Protocol?",
-      "description": "MCP in one paragraph, what it solves, and how a server fits in.",
-      "ref": "pages/02-what-is-mcp.md"
-    },
-    {
       "name": "The Server Lifecycle",
       "description": "Initialize, list, call — the request shape an MCP client expects.",
       "ref": "pages/03-server-lifecycle.md"
+    },
+    {
+      "name": "What is the Model Context Protocol?",
+      "description": "MCP in one paragraph, what it solves, and how a server fits in.",
+      "ref": "pages/02-what-is-mcp.md"
     },
     {
       "name": "Project Setup",

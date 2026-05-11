@@ -15,3 +15,7 @@ This short course walks through everything you need to brew better coffee at hom
 ## How to follow along
 
 Read each page in order. The course builds from ingredients to method to feedback. By the end you will have a repeatable process you can tweak rather than guess at.
+
+## Summary 
+- Read each page in order. The course builds from ingredients to method to feedback. By the end you will have a repeatable process you can tweak rather than guess at.
+- Read each page in order. The course builds from ingredients to method to feedback. By the end you will have a repeatable process you can tweak rather than guess at.

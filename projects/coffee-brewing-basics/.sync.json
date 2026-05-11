@@ -1,5 +1,5 @@
 {
-  "lastSyncedAt": "2026-05-08T12:00:00.000Z",
+  "lastSyncedAt": "2026-05-11T12:00:00.000Z",
   "projectJsonBlobSha": "58f3ff36e562d838e549dc6669a2bfe587c761d6",
   "remote": {
     "companyId": "dcf0a9e3-c4c9-4a2f-883d-75672e6399dc",
@@ -22,10 +22,26 @@
     "Numbered List": "8e391859-008d-47c6-b755-24ac2356448e",
     "Footer 1": "aa663baa-466f-4dc9-90d6-4cd06c00258b"
   },
+  "templateSchemas": {
+    "Cover 4": [
+      {"key":"image/0","type":"image","meta":{"isHtmlValue":true,"nodeId":"b33cd83c-eea9-446e-8ca6-0ec71c048af9","elementId":"ead66ce1-2052-463e-a0ca-5f5e9041f378"},"content":{"source":"file","fileId":"1247a0bb-7efc-4c36-a0a3-fc084288d7da","alt":null,"zoomable":null,"overlay":null}},
+      {"key":"richText/0","type":"richText","meta":{"isHtmlValue":true,"nodeId":"883e0861-7d3f-4882-9ffa-af34954fa3bc","elementId":"a4c94dcf-35ec-4311-b9e8-8523aa5a0f36"},"content":{"valueHtml":"<p style=\"\"><span style=\"\">Jack Johnson</span></p>"}},
+      {"key":"richText/1","type":"richText","meta":{"isHtmlValue":true,"nodeId":"151a19e3-0a6c-422f-acec-d530e71caee3","elementId":"889b7c7b-1a4e-44a5-a56c-19a48c5b3ae9"},"content":{"valueHtml":"<div role=\"caption\" style=\"\"><span style=\"color: var(--brand-secondaryTextColor)\">Learning and development officer</span></div>"}},
+      {"key":"richText/2","type":"richText","meta":{"isHtmlValue":true,"nodeId":"916f4eb0-ae58-42ac-9c91-aedffa844925","elementId":"3f646247-9edf-49f3-9e87-073d20871795"},"content":{"valueHtml":"<h2 style=\"text-align: center\"><span style=\"\">How to create the first course with Parta</span></h2>"}},
+      {"key":"button/0","type":"button","meta":{"isHtmlValue":true,"nodeId":"c452eeaa-48e6-4d43-ae5a-ace1ab96c572","elementId":"fb0df861-e06d-4706-ba2d-8bb682dee156"},"content":{"label":"Start course","actionType":"blockAction","action":"courseStart","secondLabel":"Continue","thirdLabel":null,"fourthLabel":null,"position":null,"condition":null,"actionData":null}},
+      {"key":"image/1","type":"image","meta":{"isHtmlValue":true,"nodeId":"309d1dd4-5408-4499-92b6-256c9e52c6b4","elementId":"f313815d-39c1-4461-9029-4ec730607276"},"content":{"source":"file","fileId":"4763b776-cce7-4ce6-a05f-33b8d640bebf","alt":null,"zoomable":null,"overlay":null}},
+      {"key":"richText/3","type":"richText","meta":{"isHtmlValue":true,"nodeId":"c29b3a39-404e-46a9-85b6-166a86620648","elementId":"49e23eff-e045-4a97-a7a9-2174c19f8c77"},"content":{"valueHtml":"<h3 style=\"\"><span style=\"\">About this course</span></h3>"}},
+      {"key":"richText/4","type":"richText","meta":{"isHtmlValue":true,"nodeId":"24e1d479-5649-45af-af70-1ab6f953dc28","elementId":"ee874864-77c2-40ff-ab93-5c3aac75aab3"},"content":{"valueHtml":"<p style=\"\"><span style=\"color: var(--brand-primaryTextColor)\">Parta is designed for enterprise teams, from the ground up.</span></p>"}},
+      {"key":"richText/5","type":"richText","meta":{"isHtmlValue":true,"nodeId":"805707ab-bb2c-4acc-ad77-e46645c0f47d","elementId":"21bf503e-f409-47a7-9a22-977d143fc296"},"content":{"valueHtml":"<h3 style=\"\"><span style=\"\">Course programm</span></h3>"}},
+      {"key":"courseStructure/0","type":"courseStructure","meta":{"isHtmlValue":true,"nodeId":"3b44539a-1293-444b-841d-9ecfbfed2b91","elementId":"dd2f65ef-d73d-4859-9713-de69caa6ec63"},"content":{"showDescription":true,"showChapterIcon":true,"showLandingIcon":true,"showTestIcon":true,"initialOpen":true,"progressPosition":"left","collapsePosition":"left"}},
+      {"key":"richText/6","type":"richText","meta":{"isHtmlValue":true,"nodeId":"cf868ad8-2dfe-4b2a-993f-8d016d1c3d4c","elementId":"33faf815-0228-4db9-a29e-6a4e71b3b99f"},"content":{"valueHtml":"<div role=\"caption\" style=\"text-align: center\"><span style=\"color: var(--brand-secondaryTextColor)\">All rights reserved</span></div>"}},
+      {"key":"richText/7","type":"richText","meta":{"isHtmlValue":true,"nodeId":"e789a843-43a2-41f4-ab25-8266a13c479a","elementId":"01db2960-ea0c-4a8b-819e-a4cefd72c47a"},"content":{"valueHtml":"<div role=\"caption\" style=\"text-align: center\"><span style=\"color: var(--brand-secondaryTextColor)\">© 2025 Parta</span></div>"}}
+    ]
+  },
   "pages": {
     "pages/01-welcome.md": {
       "sectionId": "4f4db104-0a85-406c-b6cb-78219d249157",
-      "blobSha": "32aec5ae24d13f95fae35d9ed13a297f1b288e89",
+      "blobSha": "31743fa75f61bd3597700464e6aff0280b197cf1",
       "blocks": [
         {"uuid": "cb096979-623b-4e91-83ea-884955a2b0f6", "templateName": "Cover 4", "nodeKey": "cover#0"}
       ]

@@ -27,6 +27,11 @@
       "name": "Your First Cake: Classic Vanilla Sponge",
       "description": "A step-by-step recipe for a simple vanilla sponge cake.",
       "ref": "pages/05-vanilla-sponge.md"
+    },
+    {
+      "name": "Summary",
+      "description": "A recap of the key ingredients, tools, and techniques, plus what to try next.",
+      "ref": "pages/06-summary.md"
     }
   ]
 }

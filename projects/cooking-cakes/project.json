@@ -1,0 +1,32 @@
+{
+  "$schema": "../schema.json",
+  "name": "Cooking Cakes",
+  "description": "A beginner-friendly course on baking cakes from scratch — ingredients, techniques, and a first recipe.",
+  "pages": [
+    {
+      "name": "Welcome to Cake Baking",
+      "description": "Cover page introducing the course and what you will learn.",
+      "ref": "pages/01-welcome.md"
+    },
+    {
+      "name": "Essential Ingredients",
+      "description": "The core ingredients used in most cakes and what each one does.",
+      "ref": "pages/02-ingredients.md"
+    },
+    {
+      "name": "Tools and Equipment",
+      "description": "The basic equipment you need before you start baking.",
+      "ref": "pages/03-tools.md"
+    },
+    {
+      "name": "Core Techniques",
+      "description": "Creaming, folding, and mixing — the techniques behind a good crumb.",
+      "ref": "pages/04-techniques.md"
+    },
+    {
+      "name": "Your First Cake: Classic Vanilla Sponge",
+      "description": "A step-by-step recipe for a simple vanilla sponge cake.",
+      "ref": "pages/05-vanilla-sponge.md"
+    }
+  ]
+}

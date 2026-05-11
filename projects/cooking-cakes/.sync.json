@@ -1,6 +1,6 @@
 {
   "lastSyncedAt": "2026-05-11T12:00:00.000Z",
-  "projectJsonBlobSha": "b3d417db6526ddab4e5ff453bb3a98b08e5b92aa",
+  "projectJsonBlobSha": "75d6127372e83a96d9b112faee1804ecc353b387",
   "remote": {
     "companyId": "dcf0a9e3-c4c9-4a2f-883d-75672e6399dc",
     "projectId": "26363329-480c-4b1b-907d-9ed07519b6e6"
@@ -118,8 +118,21 @@
         {"uuid": "5bbe59ba-7368-4778-b525-3d76d637f550", "templateName": "Heading 2 with Caption", "nodeKey": "h2#1"},
         {"uuid": "81b2c2b9-8520-450a-84a0-f8a44bbb7c8d", "templateName": "Numbered List", "nodeKey": "list#1"},
         {"uuid": "99abdbad-d77a-4cdf-afd8-b8f6b365cf7a", "templateName": "Heading 2 with Divider", "nodeKey": "h2#2"},
-        {"uuid": "50302c47-89a5-4c0a-9284-ac716fd6ebf9", "templateName": "Bullet List", "nodeKey": "list#2"},
-        {"uuid": "3ce563a0-fe18-4b3c-93f7-951090c80549", "templateName": "Footer 1", "nodeKey": "footer#0"}
+        {"uuid": "50302c47-89a5-4c0a-9284-ac716fd6ebf9", "templateName": "Bullet List", "nodeKey": "list#2"}
+      ]
+    },
+    "pages/06-summary.md": {
+      "sectionId": "82a201e2-7392-459b-8612-432bdf2234e1",
+      "blobSha": "a5e6801094acfe3a3b324f75203fbb07d761e360",
+      "blocks": [
+        {"uuid": "2557c6f3-a6ac-4128-9033-a1e048762014", "templateName": "Heading 1 with Caption", "nodeKey": "h1#0"},
+        {"uuid": "c2e30056-7cfc-42cb-8293-c81d9aec7bd5", "templateName": "Heading 2", "nodeKey": "h2#0"},
+        {"uuid": "a5e1cafe-058e-4bfa-a7ca-e7f347c10dd1", "templateName": "Bullet List", "nodeKey": "list#0"},
+        {"uuid": "5a9f7dc1-b466-4977-9d34-4434d67627a2", "templateName": "Heading 2 with Caption", "nodeKey": "h2#1"},
+        {"uuid": "7e1d2e0a-0d38-4bba-b5c9-48c7138c8b9b", "templateName": "Bullet List", "nodeKey": "list#1"},
+        {"uuid": "b009b631-bf1f-4000-9722-c1d579909214", "templateName": "Heading 2 with Divider", "nodeKey": "h2#2"},
+        {"uuid": "864a3e75-69bd-40ec-8d49-c26da7e32501", "templateName": "Text", "nodeKey": "p#0"},
+        {"uuid": "b39f0ce7-6295-4163-91d2-8649b7650598", "templateName": "Footer 1", "nodeKey": "footer#0"}
       ]
     }
   },

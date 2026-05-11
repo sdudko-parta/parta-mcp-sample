@@ -1,0 +1,127 @@
+{
+  "lastSyncedAt": "2026-05-11T12:00:00.000Z",
+  "projectJsonBlobSha": "b3d417db6526ddab4e5ff453bb3a98b08e5b92aa",
+  "remote": {
+    "companyId": "dcf0a9e3-c4c9-4a2f-883d-75672e6399dc",
+    "projectId": "26363329-480c-4b1b-907d-9ed07519b6e6"
+  },
+  "templateGroup": {
+    "id": "bb96540a-ae08-4a04-8bef-61505cf742f4",
+    "name": "Parta Quick-Start Collection"
+  },
+  "templates": {
+    "Cover 4": "6ee964fe-44c4-43eb-b853-013dd495fb6a",
+    "Heading 1 with Caption": "de4aa646-9452-42e8-b1d3-0dd124eab6e7",
+    "Heading 2": "529ae6e5-a9b1-4a6a-b53a-104b7d578bbd",
+    "Heading 2 with Caption": "04aad22f-341a-4f28-9940-1130530afe72",
+    "Heading 2 with Divider": "0d09af1b-d447-4a04-b336-788c41bc26af",
+    "Text": "99784d9d-bdab-4200-ad89-01dfadfcbc41",
+    "Bullet List": "1a7e35b9-3550-4451-950d-c2141955ddf2",
+    "Numbered List": "8e391859-008d-47c6-b755-24ac2356448e",
+    "Footer 1": "aa663baa-466f-4dc9-90d6-4cd06c00258b"
+  },
+  "templateSchemas": {
+    "Cover 4": [
+      {"key":"image/0","type":"image","meta":{"isHtmlValue":true,"nodeId":"b33cd83c-eea9-446e-8ca6-0ec71c048af9","elementId":"ead66ce1-2052-463e-a0ca-5f5e9041f378"},"content":{"source":"file","fileId":"1247a0bb-7efc-4c36-a0a3-fc084288d7da","alt":null,"zoomable":null,"overlay":null}},
+      {"key":"richText/0","type":"richText","meta":{"isHtmlValue":true,"nodeId":"883e0861-7d3f-4882-9ffa-af34954fa3bc","elementId":"a4c94dcf-35ec-4311-b9e8-8523aa5a0f36"},"content":{"valueHtml":"<p style=\"\"><span style=\"\">Jack Johnson</span></p>"}},
+      {"key":"richText/1","type":"richText","meta":{"isHtmlValue":true,"nodeId":"151a19e3-0a6c-422f-acec-d530e71caee3","elementId":"889b7c7b-1a4e-44a5-a56c-19a48c5b3ae9"},"content":{"valueHtml":"<div role=\"caption\" style=\"\"><span style=\"color: var(--brand-secondaryTextColor)\">Learning and development officer</span></div>"}},
+      {"key":"richText/2","type":"richText","meta":{"isHtmlValue":true,"nodeId":"916f4eb0-ae58-42ac-9c91-aedffa844925","elementId":"3f646247-9edf-49f3-9e87-073d20871795"},"content":{"valueHtml":"<h2 style=\"text-align: center\"><span style=\"\">How to create the first course with Parta</span></h2>"}},
+      {"key":"button/0","type":"button","meta":{"isHtmlValue":true,"nodeId":"c452eeaa-48e6-4d43-ae5a-ace1ab96c572","elementId":"fb0df861-e06d-4706-ba2d-8bb682dee156"},"content":{"label":"Start course","actionType":"blockAction","action":"courseStart","secondLabel":"Continue","thirdLabel":null,"fourthLabel":null,"position":null,"condition":null,"actionData":null}},
+      {"key":"image/1","type":"image","meta":{"isHtmlValue":true,"nodeId":"309d1dd4-5408-4499-92b6-256c9e52c6b4","elementId":"f313815d-39c1-4461-9029-4ec730607276"},"content":{"source":"file","fileId":"4763b776-cce7-4ce6-a05f-33b8d640bebf","alt":null,"zoomable":null,"overlay":null}},
+      {"key":"richText/3","type":"richText","meta":{"isHtmlValue":true,"nodeId":"c29b3a39-404e-46a9-85b6-166a86620648","elementId":"49e23eff-e045-4a97-a7a9-2174c19f8c77"},"content":{"valueHtml":"<h3 style=\"\"><span style=\"\">About this course</span></h3>"}},
+      {"key":"richText/4","type":"richText","meta":{"isHtmlValue":true,"nodeId":"24e1d479-5649-45af-af70-1ab6f953dc28","elementId":"ee874864-77c2-40ff-ab93-5c3aac75aab3"},"content":{"valueHtml":"<p style=\"\"><span style=\"color: var(--brand-primaryTextColor)\">Parta is designed for enterprise teams, from the ground up.</span></p>"}},
+      {"key":"richText/5","type":"richText","meta":{"isHtmlValue":true,"nodeId":"805707ab-bb2c-4acc-ad77-e46645c0f47d","elementId":"21bf503e-f409-47a7-9a22-977d143fc296"},"content":{"valueHtml":"<h3 style=\"\"><span style=\"\">Course programm</span></h3>"}},
+      {"key":"courseStructure/0","type":"courseStructure","meta":{"isHtmlValue":true,"nodeId":"3b44539a-1293-444b-841d-9ecfbfed2b91","elementId":"dd2f65ef-d73d-4859-9713-de69caa6ec63"},"content":{"showDescription":true,"showChapterIcon":true,"showLandingIcon":true,"showTestIcon":true,"initialOpen":true,"progressPosition":"left","collapsePosition":"left"}},
+      {"key":"richText/6","type":"richText","meta":{"isHtmlValue":true,"nodeId":"cf868ad8-2dfe-4b2a-993f-8d016d1c3d4c","elementId":"33faf815-0228-4db9-a29e-6a4e71b3b99f"},"content":{"valueHtml":"<div role=\"caption\" style=\"text-align: center\"><span style=\"color: var(--brand-secondaryTextColor)\">All rights reserved</span></div>"}},
+      {"key":"richText/7","type":"richText","meta":{"isHtmlValue":true,"nodeId":"e789a843-43a2-41f4-ab25-8266a13c479a","elementId":"01db2960-ea0c-4a8b-819e-a4cefd72c47a"},"content":{"valueHtml":"<div role=\"caption\" style=\"text-align: center\"><span style=\"color: var(--brand-secondaryTextColor)\">© 2025 Parta</span></div>"}}
+    ],
+    "Heading 1 with Caption": [
+      {"key":"richText/0","type":"richText","meta":{"isHtmlValue":true,"nodeId":"1eb9bccb-e093-4d9a-8f5e-49d95df5c5cc","elementId":"602884e6-2da1-477a-a480-3d63e8828432"},"content":{"valueHtml":"<h1 style=\"\"><span style=\"\">Heading 1</span></h1>"}},
+      {"key":"richText/1","type":"richText","meta":{"isHtmlValue":true,"nodeId":"73d9a85e-9bfc-4fec-a62f-7991aa47757a","elementId":"e0c22d67-803b-4c65-b0f7-1e8bad16399f"},"content":{"valueHtml":"<p style=\"\"><span style=\"\">Caption text</span></p>"}}
+    ],
+    "Heading 2": [
+      {"key":"richText/0","type":"richText","meta":{"isHtmlValue":true,"nodeId":"ae673ef2-c775-45e3-a276-5abb397a525f","elementId":"2bd2cdcc-0c8c-4a03-bb55-72ff8fa3da3c"},"content":{"valueHtml":"<h2 style=\"\"><span style=\"\">Middle heading 2</span></h2>"}},
+      {"key":"rectangle/0","type":"rectangle","meta":{"isHtmlValue":true,"nodeId":"02084e42-54b2-4235-b389-8c98cd3d1db9","elementId":"a4b99d15-4598-4f59-91b5-9d83db1b1e2e"},"content":{}}
+    ],
+    "Heading 2 with Caption": [
+      {"key":"richText/0","type":"richText","meta":{"isHtmlValue":true,"nodeId":"09eb6692-0141-41c8-b351-97381fdb29b1","elementId":"17cb2c3e-b179-4398-b59e-e6d7dbe8e344"},"content":{"valueHtml":"<h2 style=\"\"><span style=\"\">Heading 2</span></h2>"}},
+      {"key":"richText/1","type":"richText","meta":{"isHtmlValue":true,"nodeId":"f763f8ad-86fe-4228-bbf5-9b4e43a6a8f7","elementId":"bab0c866-be61-4b10-8648-353887e74b95"},"content":{"valueHtml":"<p style=\"\"><span style=\"\">Caption</span></p>"}}
+    ],
+    "Heading 2 with Divider": [
+      {"key":"richText/0","type":"richText","meta":{"isHtmlValue":true,"nodeId":"5ed6414b-8b72-4ada-9650-03b5bfe4ae4a","elementId":"d972bc49-b985-4f21-a88e-74e7c5e4ee30"},"content":{"valueHtml":"<h2 style=\"text-align: left\"><span style=\"\">Heading</span></h2>"}},
+      {"key":"divider/0","type":"divider","meta":{"isHtmlValue":true,"nodeId":"6221c584-4e66-49f7-9b85-0ed7ca71bc17","elementId":"4610807c-4342-42d3-9892-18ecb779e729"},"content":{"dividerType":"solid","dividerView":"single","color":null,"fontColor":null,"isNumbered":null,"dividerNumber":"","dividerCount":null}}
+    ],
+    "Text": [
+      {"key":"richText/0","type":"richText","meta":{"isHtmlValue":true,"nodeId":"2a1ec6ee-dc35-4fb6-8d88-75f1eb5c51c4","elementId":"bf5eccb7-51f4-4d73-a88e-245cf1c1c5a9"},"content":{"valueHtml":"<p style=\"text-align: left\"><span style=\"\">Text</span></p>"}}
+    ],
+    "Bullet List": [
+      {"key":"list/0","type":"list","meta":{"isHtmlValue":true,"nodeId":"a4b112ab-e5a2-4dab-b08d-e708e5a0bfa5","elementId":"29234716-1154-4914-8a66-9a61c8aca61d"},"content":{"items":[],"mode":"point"}}
+    ],
+    "Numbered List": [
+      {"key":"list/0","type":"list","meta":{"isHtmlValue":true,"nodeId":"5b6b26ce-6612-4e0e-94b2-8b89c24ea395","elementId":"86678b4d-463a-4e26-928e-3eafae6e3d51"},"content":{"items":[],"mode":"number"}}
+    ],
+    "Footer 1": [
+      {"key":"image/0","type":"image","meta":{"isHtmlValue":true,"nodeId":"b09a8ea4-9f71-4505-aac2-b69446e8d56c","elementId":"8cdd536b-08b5-43b9-9308-cf537efecc20"},"content":{"source":"file","fileId":"9a081a9b-7253-47bf-8bbd-e1d55fb2d1e4","alt":null,"zoomable":null,"overlay":null}},
+      {"key":"richText/0","type":"richText","meta":{"isHtmlValue":true,"nodeId":"80548ee7-9ae8-434e-8efa-4301f9841a2a","elementId":"8fd78278-0a68-41d2-9888-aba699ef1768"},"content":{"valueHtml":"<p style=\"text-align: center\"><span style=\"font-weight: bold\">Created in Parta.io</span><span style=\"\">. </span><span style=\"color: var(--brand-secondaryTextColor)\">Collaborative eLearning creation platform.</span></p>"}}
+    ]
+  },
+  "pages": {
+    "pages/01-welcome.md": {
+      "sectionId": "be1bf4d7-4db2-4ab9-86bd-8256301e8adc",
+      "blobSha": "812db3e2314530386f988865716a0ded7e4e4527",
+      "blocks": [
+        {"uuid": "8c18c0e3-7b8e-424e-89da-c891c6fefdd8", "templateName": "Cover 4", "nodeKey": "cover#0"}
+      ]
+    },
+    "pages/02-ingredients.md": {
+      "sectionId": "9a194c6a-93c4-47e3-a184-484cd7f864c4",
+      "blobSha": "6087888026acd8f4d59a6af2d24f575e2b03e8f6",
+      "blocks": [
+        {"uuid": "1e97226d-af01-48e3-8bf7-aa64871c4199", "templateName": "Heading 1 with Caption", "nodeKey": "h1#0"},
+        {"uuid": "4ea5c927-fa02-4eaf-bf73-c78c3d784fbd", "templateName": "Heading 2", "nodeKey": "h2#0"},
+        {"uuid": "2424af2a-c45c-4528-ade6-9b033d68f5fa", "templateName": "Bullet List", "nodeKey": "list#0"},
+        {"uuid": "11e3e0c9-1b69-4b51-92e9-d669de557824", "templateName": "Heading 2 with Caption", "nodeKey": "h2#1"},
+        {"uuid": "3de99e9c-3848-47a0-bae8-fc8e368cbd7e", "templateName": "Text", "nodeKey": "p#0"}
+      ]
+    },
+    "pages/03-tools.md": {
+      "sectionId": "94b843f6-f674-472c-bb76-81253c16f3cd",
+      "blobSha": "1ae4fdeb902033e50c35090d83c53ca6820810b0",
+      "blocks": [
+        {"uuid": "d45f7b52-a2ea-4244-acf6-78661c11bbfa", "templateName": "Heading 1 with Caption", "nodeKey": "h1#0"},
+        {"uuid": "580f2230-3679-427d-94af-b0041195d728", "templateName": "Heading 2", "nodeKey": "h2#0"},
+        {"uuid": "f3af39de-fe69-487b-9c93-3c32fb1722ad", "templateName": "Bullet List", "nodeKey": "list#0"},
+        {"uuid": "a01caaa1-32c7-4f02-880d-655bad3921b9", "templateName": "Heading 2 with Caption", "nodeKey": "h2#1"},
+        {"uuid": "45ba6122-2cd4-49dc-b341-58521481cfc9", "templateName": "Bullet List", "nodeKey": "list#1"}
+      ]
+    },
+    "pages/04-techniques.md": {
+      "sectionId": "f114d6ce-64ef-493b-9037-00f72806eb15",
+      "blobSha": "cb7e61028bf7b5df2dd711a679f54d22a6aa8bce",
+      "blocks": [
+        {"uuid": "b14bc43d-6eb6-4442-beb2-8c7ddc94766e", "templateName": "Heading 1 with Caption", "nodeKey": "h1#0"},
+        {"uuid": "41e22546-1627-4c64-ab82-1a4068c342d0", "templateName": "Heading 2", "nodeKey": "h2#0"},
+        {"uuid": "fb483ff5-6ff3-4626-ada8-320f588e5179", "templateName": "Text", "nodeKey": "p#0"},
+        {"uuid": "cc96171c-0822-4794-a51e-aba895707b35", "templateName": "Heading 2 with Caption", "nodeKey": "h2#1"},
+        {"uuid": "c313052d-2640-461b-b4ca-113e34a9d5d1", "templateName": "Text", "nodeKey": "p#1"},
+        {"uuid": "85ed2402-b2b1-4586-8c71-7c0674a9f479", "templateName": "Heading 2 with Divider", "nodeKey": "h2#2"},
+        {"uuid": "afec371b-1c79-4ffc-9608-72fdc6986247", "templateName": "Text", "nodeKey": "p#2"}
+      ]
+    },
+    "pages/05-vanilla-sponge.md": {
+      "sectionId": "b9187e44-21f7-4e59-baa9-5540379b594e",
+      "blobSha": "72b4f950ce9ded9758ef488629a468aaf0638b5f",
+      "blocks": [
+        {"uuid": "d16a956e-fee5-4928-9497-7a49d126c948", "templateName": "Heading 1 with Caption", "nodeKey": "h1#0"},
+        {"uuid": "1a2ec8f7-723b-4f59-bf7a-d5f34328410c", "templateName": "Heading 2", "nodeKey": "h2#0"},
+        {"uuid": "3d6fe2c4-2daa-4bc9-9519-7008c333e550", "templateName": "Bullet List", "nodeKey": "list#0"},
+        {"uuid": "5bbe59ba-7368-4778-b525-3d76d637f550", "templateName": "Heading 2 with Caption", "nodeKey": "h2#1"},
+        {"uuid": "81b2c2b9-8520-450a-84a0-f8a44bbb7c8d", "templateName": "Numbered List", "nodeKey": "list#1"},
+        {"uuid": "99abdbad-d77a-4cdf-afd8-b8f6b365cf7a", "templateName": "Heading 2 with Divider", "nodeKey": "h2#2"},
+        {"uuid": "50302c47-89a5-4c0a-9284-ac716fd6ebf9", "templateName": "Bullet List", "nodeKey": "list#2"},
+        {"uuid": "3ce563a0-fe18-4b3c-93f7-951090c80549", "templateName": "Footer 1", "nodeKey": "footer#0"}
+      ]
+    }
+  },
+  "assets": {}
+}
